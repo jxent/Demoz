@@ -26,7 +26,8 @@ import cn.demoz.j.tools.LogUtils;
 
 public class HttpHelper {
 
-    public static final String URL = "http://127.0.0.1:8090/";
+//    public static final String URL = "http://127.0.0.1:8090/";
+    public static final String URL = "http://localhost:8090/";
 
     /**
      * get请求，获取返回字符串内容
