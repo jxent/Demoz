@@ -5,6 +5,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Environment;
 import android.os.IBinder;
+import android.os.Looper;
 import android.widget.Toast;
 
 import org.eclipse.jetty.server.Server;
@@ -70,6 +71,8 @@ public class WebService extends Service {
 
 				server.start();
 				server.join();
+				Looper.prepare();
+				Looper.loop();
 				Toast.makeText(WebService.this, "服务器启动", Toast.LENGTH_SHORT).show();
 			} catch (Exception e) {
 				server = null;
@@ -85,6 +88,8 @@ public class WebService extends Service {
 			try {
 				server.stop();
 				server = null;
+				Looper.prepare();
+				Looper.loop();
 				Toast.makeText(WebService.this, "服务器关闭", Toast.LENGTH_SHORT).show();
 			} catch (Exception e) {
 				e.printStackTrace();

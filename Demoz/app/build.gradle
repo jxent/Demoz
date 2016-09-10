@@ -1,11 +1,12 @@
 apply plugin: 'com.android.application'
 
+// 由于使用到了apache的类库，所以不能将compileSdkVersion版本改成23，因为在版本23中已经不支持apache的类库了
 android {
     compileSdkVersion 21
     buildToolsVersion '21.1.2'
     defaultConfig {
         applicationId "cn.demoz.j"
-        minSdkVersion 16
+        minSdkVersion 15
         targetSdkVersion 21
         versionCode 1
         versionName "1.0"
