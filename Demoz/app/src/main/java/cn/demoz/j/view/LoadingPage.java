@@ -150,7 +150,7 @@ public abstract class LoadingPage extends FrameLayout {
 
             @Override
             public void run() {
-                SystemClock.sleep(500);
+                SystemClock.sleep(500);     // 服务进程在本地，所以延时半秒中去请求数据
                 final LoadResult result = load();
                 UiUtils.runOnUiThread(new Runnable() {
 

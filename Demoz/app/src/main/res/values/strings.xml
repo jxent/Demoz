@@ -11,11 +11,11 @@
     <string name="close_drawer">抽屉关闭了</string>
     <string name="load_error">加载失败,点击重试</string>
     <string-array name="tab_names">
-        <item>demo效果</item>
+        <item>功能特效</item>
+        <item>专项分类</item>
         <item>最佳</item>
         <item>游戏</item>
         <item>专题</item>
-        <item>分类</item>
         <item>首页</item>
     </string-array>
     <string name="load_more">加载中...</string>

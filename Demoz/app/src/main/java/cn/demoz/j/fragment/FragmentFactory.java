@@ -15,13 +15,13 @@ public class FragmentFactory {
             if (position == 0) {
                 fragment = new DemosFragment();
             } else if (position == 1) {
-                fragment = new BestFragment();
+                fragment = new CategoryFragment();
             } else if (position == 2) {
                 fragment = new GameFragment();
             } else if (position == 3) {
                 fragment = new SubjectFragment();
             } else if (position == 4) {
-                fragment = new CategoryFragment();
+                fragment = new BestFragment();
             } else if (position == 5) {
                 fragment = new HomeFragment();
             }

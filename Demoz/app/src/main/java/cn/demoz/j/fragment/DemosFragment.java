@@ -20,7 +20,7 @@ import cn.demoz.j.demoactivity.HugeImageViewActivity;
 import cn.demoz.j.protocol.DemosProtocol;
 import cn.demoz.j.tools.DrawableUtils;
 import cn.demoz.j.tools.UiUtils;
-import cn.demoz.j.view.Flowlayout;
+import cn.demoz.j.view.FlowLayout;
 import cn.demoz.j.view.LoadingPage;
 
 public class DemosFragment extends BaseFragment {
@@ -38,7 +38,7 @@ public class DemosFragment extends BaseFragment {
     public View createSuccessView() {
         ScrollView scrollView = new ScrollView(UiUtils.getContext());
         scrollView.setBackgroundResource(R.drawable.grid_item_bg_normal);
-        Flowlayout layout = new Flowlayout(UiUtils.getContext());
+        FlowLayout layout = new FlowLayout(UiUtils.getContext());
         int padding = UiUtils.dip2px(13);
         layout.setPadding(padding, padding, padding, padding);
         //layout.setOrientation(LinearLayout.VERTICAL);// 设置线性布局的方向

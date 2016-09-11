@@ -10,15 +10,15 @@ import java.util.List;
 
 import cn.demoz.j.tools.UiUtils;
 
-public class Flowlayout extends ViewGroup {
-    private int horizontolSpacing = UiUtils.dip2px(13);
+public class FlowLayout extends ViewGroup {
+    private int horizontalSpacing = UiUtils.dip2px(13);
     private int verticalSpacing = UiUtils.dip2px(13);
 
-    public Flowlayout(Context context) {
+    public FlowLayout(Context context) {
         super(context);
     }
 
-    public Flowlayout(Context context, AttributeSet attrs, int defStyle) {
+    public FlowLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
@@ -27,7 +27,7 @@ public class Flowlayout extends ViewGroup {
     private List<Line> mLines = new ArrayList<Line>();
     private int width;
 
-    public Flowlayout(Context context, AttributeSet attrs) {
+    public FlowLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -35,7 +35,6 @@ public class Flowlayout extends ViewGroup {
     // 父类是有义务测量每个孩子的
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        // TODO Auto-generated method stub
 //		MeasureSpec.EXACTLY;
 //		MeasureSpec.AT_MOST;
 //		MeasureSpec.UNSPECIFIED;
@@ -66,7 +65,7 @@ public class Flowlayout extends ViewGroup {
             useWidth += measuredWidth;// 让当前行加上使用的长度
             if (useWidth <= width) {
                 currentline.addChild(child);//这时候证明当前的孩子是可以放进当前的行里,放进去
-                useWidth += horizontolSpacing;
+                useWidth += horizontalSpacing;
                 if (useWidth > width) {
                     //换行
                     newLine();
@@ -131,7 +130,7 @@ public class Flowlayout extends ViewGroup {
         }
 
         public void layout(int l, int t) {
-            lineWidth += horizontolSpacing * (children.size() - 1);
+            lineWidth += horizontalSpacing * (children.size() - 1);
             int surplusChild = 0;
             int surplus = width - lineWidth;
             if (surplus > 0 && children.size() > 0) {
@@ -143,7 +142,7 @@ public class Flowlayout extends ViewGroup {
                 // getWidth()  控件显示的大小
                 child.layout(l, t, l + child.getMeasuredWidth() + surplusChild, t + child.getMeasuredHeight());
                 l += child.getMeasuredWidth() + surplusChild;
-                l += horizontolSpacing;
+                l += horizontalSpacing;
             }
         }
 
