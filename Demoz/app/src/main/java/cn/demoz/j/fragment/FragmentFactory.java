@@ -1,15 +1,14 @@
 package cn.demoz.j.fragment;
 
-import java.util.HashMap;
-import java.util.Map;
+import android.util.SparseArray;
 
 /**
  * Fragment工厂
  */
 public class FragmentFactory {
-    private static Map<Integer, BaseFragment> mFragments = new HashMap<Integer, BaseFragment>();
+    private static SparseArray<BaseFragment> mFragments = new SparseArray<BaseFragment>();
 
-    public static BaseFragment createFragment(int position) {
+    public static BaseFragment getFragment(int position) {
         BaseFragment fragment = null;
         fragment = mFragments.get(position);  //在集合中取出来Fragment
         if (fragment == null) {  //如果再集合中没有取出来 需要重新创建

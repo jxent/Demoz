@@ -77,21 +77,22 @@ public class MainActivity extends BaseActivity implements
         setContentView(R.layout.activity_main);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.dl);
         mViewPager = (ViewPager) findViewById(R.id.vp);
-        pager_tab_strip = (PagerTabStrip) findViewById(R.id.pager_tab_strip);
-        //  设置标签下划线的颜色
-        pager_tab_strip.setTabIndicatorColor(getResources().getColor(R.color.indicatorcolor));
-
-        mViewPager.setAdapter(new MainAdpater(getSupportFragmentManager()));
+        mViewPager.setAdapter(new MainAdapter(getSupportFragmentManager()));
         mViewPager.setOnPageChangeListener( new ViewPager.SimpleOnPageChangeListener() {
 
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
-                BaseFragment createFragment = FragmentFactory.createFragment(position);
+                BaseFragment createFragment = FragmentFactory.getFragment(position);
                 createFragment.show();//  当切换界面的时候 重新请求服务器
             }
 
         });
+
+        pager_tab_strip = (PagerTabStrip) findViewById(R.id.pager_tab_strip);
+        //  设置标签下划线的颜色
+        pager_tab_strip.setTabIndicatorColor(getResources().getColor(R.color.indicatorcolor));
+
         // 添加菜单
         fl_menu = (FrameLayout) findViewById(R.id.fl_menu);
         MenuHolder holder = new MenuHolder();
@@ -100,8 +101,9 @@ public class MainActivity extends BaseActivity implements
         fl_menu.addView(holder.getContentView());
     }
 
-    private class MainAdpater extends FragmentStatePagerAdapter {
-        public MainAdpater(FragmentManager fm) {
+    // 继承FragmentStatePagerAdapter
+    private class MainAdapter extends FragmentStatePagerAdapter {
+        public MainAdapter(FragmentManager fm) {
             super(fm);
         }
 
@@ -110,7 +112,7 @@ public class MainActivity extends BaseActivity implements
         @Override
         public Fragment getItem(int position) {
             //  通过Fragment工厂  生产Fragment
-            return FragmentFactory.createFragment(position);
+            return FragmentFactory.getFragment(position);
         }
 
         // 一共有几个条目

@@ -64,6 +64,9 @@ public class BaseActivity extends ActionBarActivity {
 //		}
     }
 
+    /**
+     * 安全关闭本应用
+     */
     public void killAll() {
         // 复制了一份mActivities 集合
         List<BaseActivity> copy;
@@ -71,6 +74,7 @@ public class BaseActivity extends ActionBarActivity {
             copy = new LinkedList<BaseActivity>(mActivities);
         }
         for (BaseActivity activity : copy) {
+            // 将每个Activity都正常结束掉
             activity.finish();
         }
         // 杀死当前的进程
