@@ -8,7 +8,7 @@ import cn.demoz.j.domain.UserInfo;
 public class UserProtocol extends BaseProtocol<UserInfo> {
 
     @Override
-    public UserInfo paserJson(String json) {
+    public UserInfo parseJson(String json) {
         //"{name:'传智黄盖',email:'huanggai@itcast.cn',url:'image/user.png'}"
         try {
             JSONObject jsonObject = new JSONObject(json);

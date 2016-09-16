@@ -29,7 +29,7 @@ public abstract class BaseProtocol<T> {
             }
         }
         if (json != null) {
-            return paserJson(json);
+            return parseJson(json);
         } else {
             return null;
         }
@@ -108,7 +108,7 @@ public abstract class BaseProtocol<T> {
      * @param json
      * @return
      */
-    public abstract T paserJson(String json);
+    public abstract T parseJson(String json);
 
     /**
      * 说明了关键字

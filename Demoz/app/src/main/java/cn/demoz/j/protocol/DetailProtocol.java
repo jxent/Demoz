@@ -17,7 +17,7 @@ public class DetailProtocol extends BaseProtocol<AppInfo> {
     }
 
     @Override
-    public AppInfo paserJson(String json) {
+    public AppInfo parseJson(String json) {
         try {
             JSONObject object = new JSONObject(json);
             long id = object.getLong("id");

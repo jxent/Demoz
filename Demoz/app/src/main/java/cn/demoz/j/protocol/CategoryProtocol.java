@@ -12,7 +12,7 @@ import cn.demoz.j.domain.CategoryInfo;
 public class CategoryProtocol extends BaseProtocol<List<CategoryInfo>> {
 
     @Override
-    public List<CategoryInfo> paserJson(String json) {
+    public List<CategoryInfo> parseJson(String json) {
         List<CategoryInfo> categoryInfos = new ArrayList<CategoryInfo>();
         try {
             JSONArray array = new JSONArray(json);

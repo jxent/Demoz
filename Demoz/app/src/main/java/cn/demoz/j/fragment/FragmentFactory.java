@@ -13,7 +13,7 @@ public class FragmentFactory {
         fragment = mFragments.get(position);  //在集合中取出来Fragment
         if (fragment == null) {  //如果再集合中没有取出来 需要重新创建
             if (position == 0) {
-                fragment = new DemosFragment();
+                fragment = new FlowDemosFragment();
             } else if (position == 1) {
                 fragment = new CategoryFragment();
             } else if (position == 2) {

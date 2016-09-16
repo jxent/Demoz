@@ -15,7 +15,7 @@ public class HomeProtocol extends BaseProtocol<List<AppInfo>> {
     //  1 把整个json文件写到一个本地文件中  **
     // 2  把每条数据都摘出来存到数据库中
     // 见到大括号 就用JsonObject ,见到中括号就是JsonArray
-    public List<AppInfo> paserJson(String json) {
+    public List<AppInfo> parseJson(String json) {
         List<AppInfo> appInfos = new ArrayList();
         pictures = new ArrayList();
         try {

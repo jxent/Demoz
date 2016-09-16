@@ -14,19 +14,16 @@ public class HugeImageViewActivity extends ActionBarActivity {
     private LargeImageView mLargeImageView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.huge_image_view_activity);
 
         mLargeImageView = (LargeImageView) findViewById(R.id.id_large_image);
-        try
-        {
+        try {
             InputStream inputStream = getAssets().open("world_map.jpg");
             mLargeImageView.setInputStream(inputStream);
 
-        } catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 

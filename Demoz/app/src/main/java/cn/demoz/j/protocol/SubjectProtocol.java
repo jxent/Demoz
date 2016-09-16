@@ -12,7 +12,7 @@ import cn.demoz.j.domain.SubjectInfo;
 public class SubjectProtocol extends BaseProtocol<List<SubjectInfo>> {
 
     @Override
-    public List<SubjectInfo> paserJson(String json) {
+    public List<SubjectInfo> parseJson(String json) {
         List<SubjectInfo> subjectInfos = new ArrayList<SubjectInfo>();
         try {
             JSONArray jsonArray = new JSONArray(json);

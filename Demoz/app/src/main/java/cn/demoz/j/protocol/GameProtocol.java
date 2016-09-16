@@ -12,7 +12,7 @@ import cn.demoz.j.domain.AppInfo;
 public class GameProtocol extends BaseProtocol<List<AppInfo>> {
 
     @Override
-    public List<AppInfo> paserJson(String json) {
+    public List<AppInfo> parseJson(String json) {
         List<AppInfo> appInfos = new ArrayList<AppInfo>();
         try {
             JSONArray jsonArray = new JSONArray(json);
