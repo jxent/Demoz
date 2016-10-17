@@ -9,7 +9,7 @@ import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 import cn.demoz.j.R;
-import cn.demoz.j.domain.AppInfo;
+import cn.demoz.j.bean.AppInfo;
 import cn.demoz.j.tools.UiUtils;
 
 public class DetailBottomHolder extends BaseHolder<AppInfo> implements OnClickListener {

@@ -11,6 +11,7 @@ import android.widget.Toast;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 
+import java.io.Closeable;
 import java.io.File;
 
 /**
@@ -67,17 +68,30 @@ public class WebService extends Service {
 				ServletContextHandler contextHandler = new ServletContextHandler(ServletContextHandler.SESSIONS);
 				contextHandler.setContextPath("/");
 				server.setHandler(contextHandler);
-				ServlertConfig.config(contextHandler);
+				ServletConfig.config(contextHandler);
 
 				server.start();
 				server.join();
 				Looper.prepare();
 				Looper.loop();
 				Toast.makeText(WebService.this, "服务器启动", Toast.LENGTH_SHORT).show();
+
 			} catch (Exception e) {
 				server = null;
 				e.printStackTrace();
 				Toast.makeText(WebService.this, "服务器启动失败", Toast.LENGTH_SHORT).show();
+			}
+		}
+	}
+
+	public static void closeQuietly(Closeable closeable) {
+		if (closeable != null) {
+			try {
+				closeable.close();
+			} catch (RuntimeException rethrown) {
+				throw rethrown;
+			} catch (Exception ignored) {
+
 			}
 		}
 	}

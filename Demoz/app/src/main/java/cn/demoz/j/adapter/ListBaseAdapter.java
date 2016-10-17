@@ -7,7 +7,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import cn.demoz.j.base.DetailActivity;
-import cn.demoz.j.domain.AppInfo;
+import cn.demoz.j.bean.AppInfo;
 import cn.demoz.j.holder.BaseHolder;
 import cn.demoz.j.holder.ListBaseHolder;
 import cn.demoz.j.tools.UiUtils;

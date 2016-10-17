@@ -2,45 +2,41 @@ package cn.demoz.j.protocol;
 
 import android.util.SparseArray;
 
-import org.json.JSONArray;
-import org.json.JSONException;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONException;
+import com.alibaba.fastjson.JSONObject;
 
-public class DemosProtocol extends BaseProtocol<SparseArray<String>> {
+import cn.demoz.j.bean.FlowDemosItemBean;
+
+public class DemosProtocol extends BaseProtocol<SparseArray<FlowDemosItemBean>> {
 
     @Override
-    public SparseArray<String> parseJson(String json) {
-        SparseArray<String> datas = new SparseArray<String>();
+    public SparseArray<FlowDemosItemBean> parseJson(String json) {
+        SparseArray<FlowDemosItemBean> datas = new SparseArray<FlowDemosItemBean>();
         try {
-            JSONArray array = new JSONArray(json);
-            for (int i = 0; i < array.length(); i++) {
-                String str = array.getString(i);
-                datas.put(i, str);
+            JSONObject root = JSON.parseObject(json);
+            int code = (int) root.get("code");
+            if(code == 100) {
+                JSONArray items = root.getJSONArray("items");
+                for (int i = 0; i< items.size(); i++) {
+                    FlowDemosItemBean bean = JSON.parseObject(items.get(i).toString(),
+                            FlowDemosItemBean.class);
+                    datas.append(1001 + i, bean);
+                }
+            }else if(code == -100) {
+
             }
-            return datas;
         } catch (JSONException e) {
             e.printStackTrace();
-            return null;
+        }finally {
+            return datas;
         }
-
     }
 
     @Override
     public String getKey() {
-        return "hot";
+        return "demos";
     }
-
-    @Override
-    public SparseArray<String> load(int index) {
-        SparseArray<String> datas = new SparseArray<String>();
-        datas.put(1001, "加载大图的ImageView");
-        datas.append(1002, "仿QQ消息气泡");
-        datas.append(1003, "美团选择菜单");
-        datas.append(1004, "自定义按钮水波纹效果");
-        datas.append(1005, "开关控件");
-        datas.append(1006, "仿优酷菜单");
-
-        return datas;
-    }
-
 
 }

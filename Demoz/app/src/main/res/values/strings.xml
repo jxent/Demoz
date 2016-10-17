@@ -6,7 +6,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_search">搜索</string>
     <string name="app_detail">应用详情</string>
-    <string name="huge_image_show">展示巨图</string>
+    <string name="flow_demos_show">展示Demo效果</string>
     <string name="open_drawer">抽屉打开了</string>
     <string name="close_drawer">抽屉关闭了</string>
     <string name="load_error">加载失败,点击重试</string>
@@ -30,5 +30,13 @@
     <string name="tv_about">关于</string>
     <string name="tv_exit">退出</string>
     <string name="app_detail_introduction">简介</string>
+    <!--<string-array name="flow_demos_name">-->
+        <!--<item>加载大图的ImageView</item>-->
+        <!--<item>仿QQ消息气泡</item>-->
+        <!--<item>美团选择菜单</item>-->
+        <!--<item>自定义按钮水波纹效果</item>-->
+        <!--<item>开关控件</item>-->
+        <!--<item>仿优酷菜单</item>-->
+    <!--</string-array>-->
 
 </resources>

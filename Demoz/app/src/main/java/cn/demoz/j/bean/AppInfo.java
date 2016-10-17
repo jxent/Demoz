@@ -1,4 +1,4 @@
-package cn.demoz.j.domain;
+package cn.demoz.j.bean;
 
 import java.util.List;
 

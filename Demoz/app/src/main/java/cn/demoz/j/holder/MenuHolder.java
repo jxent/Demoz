@@ -10,7 +10,7 @@ import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 import cn.demoz.j.R;
-import cn.demoz.j.domain.UserInfo;
+import cn.demoz.j.bean.UserInfo;
 import cn.demoz.j.http.HttpHelper;
 import cn.demoz.j.manager.ThreadManager;
 import cn.demoz.j.protocol.UserProtocol;

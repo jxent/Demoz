@@ -9,7 +9,7 @@ import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 
 import cn.demoz.j.R;
-import cn.demoz.j.domain.AppInfo;
+import cn.demoz.j.bean.AppInfo;
 import cn.demoz.j.holder.DetailBottomHolder;
 import cn.demoz.j.holder.DetailDesHolder;
 import cn.demoz.j.holder.DetailInfoHolder;

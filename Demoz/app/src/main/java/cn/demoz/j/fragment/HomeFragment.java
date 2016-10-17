@@ -8,7 +8,7 @@ import java.util.List;
 
 import cn.demoz.j.R;
 import cn.demoz.j.adapter.ListBaseAdapter;
-import cn.demoz.j.domain.AppInfo;
+import cn.demoz.j.bean.AppInfo;
 import cn.demoz.j.holder.HomePictureHolder;
 import cn.demoz.j.protocol.HomeProtocol;
 import cn.demoz.j.tools.UiUtils;

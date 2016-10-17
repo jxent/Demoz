@@ -29,12 +29,13 @@
                 android:value=".app.MainActivity" />
         </activity>
         <activity
-            android:name=".demoactivity.HugeImageViewActivity"
-            android:label="@string/huge_image_show"
+            android:name=".demoactivity.FlowDemosShowingActivity"
+            android:label="@string/flow_demos_show"
             android:parentActivityName=".app.MainActivity">
         </activity>
         <!--background service-->
-        <service android:name="com.wj.servicelibrary.server.WebService">
+        <service
+            android:name="com.wj.servicelibrary.server.WebService">
 
         </service>
     </application>

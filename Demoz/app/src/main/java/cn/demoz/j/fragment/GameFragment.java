@@ -6,7 +6,7 @@ import android.view.View;
 import java.util.List;
 
 import cn.demoz.j.adapter.ListBaseAdapter;
-import cn.demoz.j.domain.AppInfo;
+import cn.demoz.j.bean.AppInfo;
 import cn.demoz.j.protocol.GameProtocol;
 import cn.demoz.j.tools.UiUtils;
 import cn.demoz.j.view.BaseListView;

@@ -3,7 +3,7 @@ package cn.demoz.j.protocol;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import cn.demoz.j.domain.UserInfo;
+import cn.demoz.j.bean.UserInfo;
 
 public class UserProtocol extends BaseProtocol<UserInfo> {
 

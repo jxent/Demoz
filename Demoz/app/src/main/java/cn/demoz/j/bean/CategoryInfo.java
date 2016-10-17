@@ -1,4 +1,4 @@
-package cn.demoz.j.domain;
+package cn.demoz.j.bean;
 
 public class CategoryInfo {
     private String title;

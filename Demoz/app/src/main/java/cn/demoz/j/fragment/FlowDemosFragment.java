@@ -1,5 +1,6 @@
 package cn.demoz.j.fragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
@@ -18,16 +19,17 @@ import android.widget.TextView;
 import java.util.Random;
 
 import cn.demoz.j.R;
+import cn.demoz.j.bean.FlowDemosItemBean;
+import cn.demoz.j.demoactivity.FlowDemosShowingActivity;
 import cn.demoz.j.protocol.DemosProtocol;
 import cn.demoz.j.tools.DrawableUtils;
-import cn.demoz.j.tools.IntentOperation;
 import cn.demoz.j.tools.UiUtils;
 import cn.demoz.j.view.FlowLayout;
 import cn.demoz.j.view.LoadingPage;
 
 public class FlowDemosFragment extends BaseFragment {
 
-    private SparseArray<String> datas;
+    private SparseArray<FlowDemosItemBean> datas;
 
     // 当Fragment挂载的activity创建的时候调用
     @Override
@@ -46,11 +48,12 @@ public class FlowDemosFragment extends BaseFragment {
         //layout.setOrientation(LinearLayout.VERTICAL);// 设置线性布局的方向
         int backColor = 0xffcecece;
         Drawable pressedDrawable = DrawableUtils.createShape(backColor);// 按下显示的图片
+        // 遍历json解析后的对象数组
         for (int i = 0; i < datas.size(); i++) {
             final TextView textView = new TextView(UiUtils.getContext());
-            final String str = datas.get(datas.keyAt(i));
-            textView.setText(str);
-            textView.setTag(datas.keyAt(i));
+            final FlowDemosItemBean bean = datas.get(datas.keyAt(i));
+            textView.setText(bean.getName());
+            textView.setTag(bean);
 
             Random random = new Random();   //创建随机
             int red = random.nextInt(200) + 22;
@@ -72,7 +75,10 @@ public class FlowDemosFragment extends BaseFragment {
                 @Override
                 public void onClick(View v) {
                     // 将所有操作放到工具类中处理
-                    IntentOperation.toDemosFragmentOperation(getActivity(), (int)textView.getTag());
+                    Intent intent = new Intent(getActivity(), FlowDemosShowingActivity.class);
+                    intent.putExtra("fragment_bean", (FlowDemosItemBean)textView.getTag());
+                    getActivity().startActivity(intent);
+//                    FlowDemosShowingIntentOperation.toDemosFragmentOperation(getActivity(), (int)textView.getTag());
                 }
             });
             flowLayout.addView(textView, new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));// -2 包裹内容

@@ -7,7 +7,7 @@ import android.widget.ListView;
 import java.util.List;
 
 import cn.demoz.j.adapter.DefaultAdapter;
-import cn.demoz.j.domain.CategoryInfo;
+import cn.demoz.j.bean.CategoryInfo;
 import cn.demoz.j.holder.BaseHolder;
 import cn.demoz.j.holder.CategoryContentHolder;
 import cn.demoz.j.protocol.CategoryProtocol;

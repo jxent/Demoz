@@ -7,7 +7,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.demoz.j.domain.SubjectInfo;
+import cn.demoz.j.bean.SubjectInfo;
 
 public class SubjectProtocol extends BaseProtocol<List<SubjectInfo>> {
 

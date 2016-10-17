@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.demoz.j.domain.AppInfo;
+import cn.demoz.j.bean.AppInfo;
 
 public class DetailProtocol extends BaseProtocol<AppInfo> {
     String packageName;

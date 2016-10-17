@@ -2,6 +2,7 @@ package cn.demoz.j.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -22,80 +23,107 @@ public class FlowLayout extends ViewGroup {
         super(context, attrs, defStyle);
     }
 
-    private Line currentline;// 当前的行
-    private int useWidth = 0;// 当前行使用的宽度
+    private Line currentLine;// 当前的行
+    private int usedWidth = 0;// 当前行使用的宽度，用于判断是否需要换行
     private List<Line> mLines = new ArrayList<Line>();
-    private int width;
+    private int parentWidth;
 
     public FlowLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    // 测量 当前控件Flowlayout
-    // 父类是有义务测量每个孩子的
+    // 测量 当前控件FlowLayout 父类是有义务测量每个孩子的
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-//		MeasureSpec.EXACTLY;
-//		MeasureSpec.AT_MOST;
-//		MeasureSpec.UNSPECIFIED;
         mLines.clear();
-        currentline = null;
-        useWidth = 0;
-        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
-        int heightMode = MeasureSpec.getMode(heightMeasureSpec);  //  获取当前父容器(Flowlayout)的模式
-        width = MeasureSpec.getSize(widthMeasureSpec) - getPaddingLeft() - getPaddingRight();
-        int height = MeasureSpec.getSize(heightMeasureSpec) - getPaddingBottom() - getPaddingTop(); // 获取到宽和高
-        int childeWidthMode;
-        int childeHeightMode;
-        //  为了测量每个孩子 需要指定每个孩子测量规则
-        childeWidthMode = widthMode == MeasureSpec.EXACTLY ? MeasureSpec.AT_MOST : widthMode;
-        childeHeightMode = heightMode == MeasureSpec.EXACTLY ? MeasureSpec.AT_MOST : heightMode;
+        currentLine = null;
+        usedWidth = 0;
+        // 获取当前父容器(FlowLayout)的模式
+        int parentWidthMode = MeasureSpec.getMode(widthMeasureSpec);
+        int parentHeightMode = MeasureSpec.getMode(heightMeasureSpec);
+        // 获取当前父容器(FlowLayout)的尺寸
+        parentWidth = MeasureSpec.getSize(widthMeasureSpec) - getPaddingLeft() - getPaddingRight();
+        int height = MeasureSpec.getSize(heightMeasureSpec) - getPaddingBottom() - getPaddingTop();
 
-        int childWidthMeasureSpec = MeasureSpec.makeMeasureSpec(childeWidthMode, width);
-        int childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(childeHeightMode, height);
+        int childWidthMode;
+        int childHeightMode;
+        //  为了测量每个孩子 需要指定每个孩子测量规则(子类添加的是TextView，并且是包裹内容wrap_content的)
+        //
+        //  如果（父类可能性 match_parent、100dp | wrap_content）
+        //                  父类模式         EXACTLY          AT_MOST          UNSUPPORTED
+        //  那么（子类固定是 wrap_content）
+        //                  子类模式         AT_MOST          AT_MOST          UNSUPPORTED
+        //                  子类大小       parent_size       parent_size            0
 
-        currentline = new Line();// 创建了第一行
+        childWidthMode = parentWidthMode == MeasureSpec.EXACTLY ? MeasureSpec.AT_MOST : parentWidthMode;
+        childHeightMode = parentHeightMode == MeasureSpec.EXACTLY ? MeasureSpec.AT_MOST : parentHeightMode;
+
+        // 因为添加的子view都是TextView，规则都相同，每个子view共用相同的MeasureSpec
+        int childWidthMeasureSpec = MeasureSpec.makeMeasureSpec(childWidthMode, parentWidth);
+        int childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(childHeightMode, height);
+
+        currentLine = new Line();// 创建了第一行
+        Log.e("jason", "children count is :" + getChildCount());
+        // 循环调用子view的measure方法
         for (int i = 0; i < getChildCount(); i++) {
             View child = getChildAt(i);
-            System.out.println("孩子的数量:" + getChildCount());
-            // 测量每个孩子
+            // 调用子view的measure方法，measure-->onMeasure 这样将测量传递下去
             child.measure(childWidthMeasureSpec, childHeightMeasureSpec);
 
+            // 依据子View的宽度，进行换行操作
             int measuredWidth = child.getMeasuredWidth();
-            useWidth += measuredWidth;// 让当前行加上使用的长度
-            if (useWidth <= width) {
-                currentline.addChild(child);//这时候证明当前的孩子是可以放进当前的行里,放进去
-                useWidth += horizontalSpacing;
-                if (useWidth > width) {
+            usedWidth += measuredWidth;
+            if (usedWidth <= parentWidth) { // 加上子view宽度和父view宽度比较
+                currentLine.addChild(child);
+                usedWidth += horizontalSpacing; // 加上间隔宽度再和父view宽度比较
+                if (usedWidth > parentWidth) {
                     //换行
                     newLine();
                 }
             } else {
                 //换行
-                if (currentline.getChildCount() < 1) {
-                    currentline.addChild(child);  // 保证当前行里面最少有一个孩子
+                if (currentLine.getChildCount() < 1) {
+                    currentLine.addChild(child);  // 保证当前行里面最少有一个孩子
+                    newLine();
+                }else {
+                    newLine();
+                    currentLine.addChild(child);
+                    usedWidth += measuredWidth;
+                    usedWidth += horizontalSpacing;
                 }
-                newLine();
+//                newLine();
             }
-
         }
-        if (!mLines.contains(currentline)) {
-            mLines.add(currentline);// 添加最后一行
+        if (!mLines.contains(currentLine)) {
+            mLines.add(currentLine);// 添加最后一行
         }
-        int totalheight = 0;
+        int totalHeight = 0;
         for (Line line : mLines) {
-            totalheight += line.getHeight();
+            totalHeight += line.getHeight();
         }
-        totalheight += verticalSpacing * (mLines.size() - 1) + getPaddingTop() + getPaddingBottom();
+        totalHeight += verticalSpacing * (mLines.size() - 1) + getPaddingTop() + getPaddingBottom();
 
-        System.out.println(totalheight);
-        setMeasuredDimension(width + getPaddingLeft() + getPaddingRight(), resolveSize(totalheight, heightMeasureSpec));
+        Log.e("jason", "计算得到的总高度：" + totalHeight);
+        setMeasuredDimension(parentWidth + getPaddingLeft() + getPaddingRight(),
+                resolveSize(totalHeight, heightMeasureSpec));
     }
 
     private void newLine() {
-        mLines.add(currentline);// 记录之前的行
-        currentline = new Line(); // 创建新的一行
-        useWidth = 0;
+        mLines.add(currentLine);// 记录之前的行
+        currentLine = new Line(); // 创建新的一行
+        usedWidth = 0;
+    }
+
+    // 分配每个孩子的位置
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        l += getPaddingLeft();
+        t += getPaddingTop();
+        for (int i = 0; i < mLines.size(); i++) {
+            Line line = mLines.get(i);
+            line.layout(l, t);  //交给每一行去分配
+            t += line.getHeight() + verticalSpacing;
+        }
     }
 
     private class Line {
@@ -132,7 +160,7 @@ public class FlowLayout extends ViewGroup {
         public void layout(int l, int t) {
             lineWidth += horizontalSpacing * (children.size() - 1);
             int surplusChild = 0;
-            int surplus = width - lineWidth;
+            int surplus = parentWidth - lineWidth;
             if (surplus > 0 && children.size() > 0) {
                 surplusChild = surplus / children.size();
             }
@@ -147,17 +175,4 @@ public class FlowLayout extends ViewGroup {
         }
 
     }
-
-    // 分配每个孩子的位置
-    @Override
-    protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        l += getPaddingLeft();
-        t += getPaddingTop();
-        for (int i = 0; i < mLines.size(); i++) {
-            Line line = mLines.get(i);
-            line.layout(l, t);  //交给每一行去分配
-            t += line.getHeight() + verticalSpacing;
-        }
-    }
-
 }

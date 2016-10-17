@@ -21,7 +21,7 @@ import com.nineoldandroids.animation.ValueAnimator.AnimatorUpdateListener;
 import java.util.List;
 
 import cn.demoz.j.R;
-import cn.demoz.j.domain.AppInfo;
+import cn.demoz.j.bean.AppInfo;
 import cn.demoz.j.http.HttpHelper;
 import cn.demoz.j.tools.UiUtils;
 

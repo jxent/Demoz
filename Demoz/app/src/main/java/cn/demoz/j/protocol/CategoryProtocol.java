@@ -7,7 +7,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.demoz.j.domain.CategoryInfo;
+import cn.demoz.j.bean.CategoryInfo;
 
 public class CategoryProtocol extends BaseProtocol<List<CategoryInfo>> {
 

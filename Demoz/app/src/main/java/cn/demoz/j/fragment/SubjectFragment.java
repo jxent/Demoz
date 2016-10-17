@@ -10,7 +10,7 @@ import java.util.List;
 
 import cn.demoz.j.R;
 import cn.demoz.j.adapter.DefaultAdapter;
-import cn.demoz.j.domain.SubjectInfo;
+import cn.demoz.j.bean.SubjectInfo;
 import cn.demoz.j.holder.BaseHolder;
 import cn.demoz.j.http.HttpHelper;
 import cn.demoz.j.protocol.SubjectProtocol;

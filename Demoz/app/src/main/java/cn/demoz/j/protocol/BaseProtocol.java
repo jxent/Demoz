@@ -84,8 +84,8 @@ public abstract class BaseProtocol<T> {
             FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
             long outOfDate = Long.parseLong(br.readLine());
-            // 文件加载间隔超过6个小时即为过期
-            if (System.currentTimeMillis() > outOfDate + 6*3600*1000) {
+            // 文件加载间隔超过2个小时即为过期
+            if (System.currentTimeMillis() > outOfDate + 2*3600*1000) {
                 return null;
             } else {
                 String str = null;

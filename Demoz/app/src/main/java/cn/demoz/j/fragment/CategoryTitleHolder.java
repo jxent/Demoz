@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import cn.demoz.j.R;
-import cn.demoz.j.domain.CategoryInfo;
+import cn.demoz.j.bean.CategoryInfo;
 import cn.demoz.j.holder.BaseHolder;
 import cn.demoz.j.tools.UiUtils;
 

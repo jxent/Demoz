@@ -4,6 +4,7 @@ import com.wj.servicelibrary.servlet.AppServlet;
 import com.wj.servicelibrary.servlet.CategoryServlet;
 import com.wj.servicelibrary.servlet.DetailServlet;
 import com.wj.servicelibrary.servlet.DownloadServlet;
+import com.wj.servicelibrary.servlet.FlowDemosShowingServlet;
 import com.wj.servicelibrary.servlet.GameServlet;
 import com.wj.servicelibrary.servlet.HomeServlet;
 import com.wj.servicelibrary.servlet.HotServlet;
@@ -15,7 +16,7 @@ import com.wj.servicelibrary.servlet.UserServlet;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 
-public class ServlertConfig {
+public class ServletConfig {
 	public static void config(ServletContextHandler handler) {
 		handler.addServlet(new ServletHolder(new CategoryServlet()), "/category");
 		handler.addServlet(new ServletHolder(new ImageServlet()), "/image");
@@ -28,5 +29,6 @@ public class ServlertConfig {
 		handler.addServlet(new ServletHolder(new DownloadServlet()), "/download");
 		handler.addServlet(new ServletHolder(new UserServlet()), "/user");
 		handler.addServlet(new ServletHolder(new HotServlet()), "/hot");
+		handler.addServlet(new ServletHolder(new FlowDemosShowingServlet()), "/demos");
 	}
 }
