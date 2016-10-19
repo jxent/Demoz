@@ -1,1 +1,1 @@
-include ':app', ':ptr-lib', ':servicelibrary', ':customize-clock'
+include ':app', ':ptr-lib', ':servicelibrary'

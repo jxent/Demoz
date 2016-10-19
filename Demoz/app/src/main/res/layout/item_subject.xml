@@ -11,7 +11,7 @@
         android:layout_marginRight="9dip"
         android:background="@drawable/list_item_bg">
 
-        <cn.demoz.j.view.RatioLayout
+        <cn.demoz.www.view.RatioLayout
             android:id="@+id/rl_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_default" />
-        </cn.demoz.j.view.RatioLayout>
+        </cn.demoz.www.view.RatioLayout>
 
         <TextView
             android:id="@+id/item_txt"
