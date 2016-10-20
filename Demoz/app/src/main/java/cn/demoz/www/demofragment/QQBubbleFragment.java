@@ -2,15 +2,15 @@ package cn.demoz.www.demofragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import cn.demoz.www.base.BaseDemosFragment;
 import cn.demoz.www.view.LargeImageView;
 
-public class QQBubbleFragment extends Fragment {
+public class QQBubbleFragment extends BaseDemosFragment {
 
     private LargeImageView mLargeImageView;
 
