@@ -1,4 +1,4 @@
-package cn.demoz.www.demofragment;
+package cn.demoz.www.demos.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,7 +10,7 @@ import android.widget.TextView;
 import cn.demoz.www.base.BaseDemosFragment;
 import cn.demoz.www.view.LargeImageView;
 
-public class QQBubbleFragment extends BaseDemosFragment {
+public class SwitchButtonFragment extends BaseDemosFragment {
 
     private LargeImageView mLargeImageView;
 
@@ -36,9 +36,14 @@ public class QQBubbleFragment extends BaseDemosFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         TextView textView = new TextView(getActivity());
-        textView.setText("QQBubble...");
+        textView.setText("SwitchButtonFragment ");
 //        return super.onCreateView(inflater, container, savedInstanceState);
         return textView;
+    }
+
+    @Override
+    public View setDemoContentView(LayoutInflater inflater) {
+        return null;
     }
 
     @Override

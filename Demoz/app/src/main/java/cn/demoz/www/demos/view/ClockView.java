@@ -19,12 +19,21 @@ import java.util.Calendar;
  */
 public class ClockView extends SurfaceView implements SurfaceHolder.Callback, Runnable {
 
-    // 默认半径
+    /**
+     * 使用SurfaceView需要做的操作是：
+     *     1. 继承SurfaceView类
+     *     2. 实现SurfaceHolder.Callback接口
+     * SurfaceHolder 是控制Surface的类，得到画布、提交画布、回调等
+     *
+     * 参考简书博客 http://www.jianshu.com/p/fe65f5d7a60b
+     * */
+
+    // 表盘的默认半径
     private static final int DEFAULT_RADIUS = 200;
 
     private SurfaceHolder mHolder;
     private Canvas mCanvas;
-    private boolean flag;
+    private boolean workingFlag;    // 是否在运行标志
 
     private OnTimeChangeListener onTimeChangeListener;
 
@@ -95,11 +104,13 @@ public class ClockView extends SurfaceView implements SurfaceHolder.Callback, Ru
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
+        // 得到父元素对其的约束
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
 
+        // 与自身设置的LayoutParam一起生成测量规格
         int desiredWidth, desiredHeight;
         if (widthMode == MeasureSpec.EXACTLY) {
             desiredWidth = widthSize;
@@ -127,9 +138,10 @@ public class ClockView extends SurfaceView implements SurfaceHolder.Callback, Ru
         calculateLengths();
     }
 
+    //----------------- 覆写SurfaceHolder.Callback的方法 start -------------------//
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        flag = true;
+        workingFlag = true;
         new Thread(this).start();
     }
 
@@ -138,19 +150,21 @@ public class ClockView extends SurfaceView implements SurfaceHolder.Callback, Ru
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
-        flag = false;
+        workingFlag = false;
     }
+    //----------------- 覆写SurfaceHolder.Callback的方法 end -------------------//
 
     @Override
     public void run() {
         long start, end;
-        while (flag) {
+        while (workingFlag) {
             start = System.currentTimeMillis();
             draw();
             logic();
             end = System.currentTimeMillis();
 
             try {
+                // 耗时不足一秒，等待剩余时间，实际误差肯定是有的（代码执行，CPU时间片获取）
                 if (end - start < 1000) {
                     Thread.sleep(1000 - (end - start));
                 }
@@ -171,7 +185,7 @@ public class ClockView extends SurfaceView implements SurfaceHolder.Callback, Ru
     });
 
     /**
-     * 逻辑
+     * 执行逻辑
      */
     private void logic() {
         mSecond++;
@@ -191,7 +205,7 @@ public class ClockView extends SurfaceView implements SurfaceHolder.Callback, Ru
     }
 
     /**
-     * 绘制
+     * 绘制操作
      */
     private void draw() {
         try {
@@ -300,7 +314,7 @@ public class ClockView extends SurfaceView implements SurfaceHolder.Callback, Ru
         mSecondPointerLength = (int) (mHourPointerLength * 1.5f);
     }
 
-    //-----------------Setter and Getter start-----------------//
+    //----------------- Setter and Getter start -----------------//
     public int getHour() {
         return mHour;
     }

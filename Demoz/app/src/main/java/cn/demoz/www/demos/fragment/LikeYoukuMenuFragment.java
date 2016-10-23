@@ -1,16 +1,16 @@
-package cn.demoz.www.demofragment;
+package cn.demoz.www.demos.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import cn.demoz.www.base.BaseDemosFragment;
 import cn.demoz.www.view.LargeImageView;
 
-public class MeituanMenuFragment extends Fragment {
+public class LikeYoukuMenuFragment extends BaseDemosFragment {
 
     private LargeImageView mLargeImageView;
 
@@ -27,8 +27,6 @@ public class MeituanMenuFragment extends Fragment {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-//
-//
 //    }
 
 
@@ -36,9 +34,14 @@ public class MeituanMenuFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         TextView textView = new TextView(getActivity());
-        textView.setText("Meituan menu");
+        textView.setText("LikeYoukuMenuFragment ");
 //        return super.onCreateView(inflater, container, savedInstanceState);
         return textView;
+    }
+
+    @Override
+    public View setDemoContentView(LayoutInflater inflater) {
+        return null;
     }
 
     @Override

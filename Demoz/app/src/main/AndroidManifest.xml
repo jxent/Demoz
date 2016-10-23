@@ -29,7 +29,7 @@
                 android:value="cn.demoz.www.app.MainActivity" />
         </activity>
         <activity
-            android:name="cn.demoz.www.demoactivity.FlowDemosShowingActivity"
+            android:name=".demos.activity.FlowDemosShowingActivity"
             android:label="@string/flow_demos_show"
             android:parentActivityName="cn.demoz.www.app.MainActivity">
         </activity>

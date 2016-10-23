@@ -20,7 +20,7 @@ import java.util.Random;
 
 import cn.demoz.www.R;
 import cn.demoz.www.bean.FlowDemosItemBean;
-import cn.demoz.www.demoactivity.FlowDemosShowingActivity;
+import cn.demoz.www.demos.activity.FlowDemosShowingActivity;
 import cn.demoz.www.protocol.DemosProtocol;
 import cn.demoz.www.tools.DrawableUtils;
 import cn.demoz.www.tools.UiUtils;

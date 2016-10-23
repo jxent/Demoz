@@ -1,4 +1,4 @@
-package cn.demoz.www.demoactivity;
+package cn.demoz.www.demos.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

@@ -1,10 +1,7 @@
-package cn.demoz.www.demofragment;
+package cn.demoz.www.demos.fragment;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,8 +15,7 @@ public class HugeImageViewFragment extends BaseDemosFragment {
     private LargeImageView mLargeImageView;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
+    public View setDemoContentView(LayoutInflater inflater) {
         View view = inflater.inflate(R.layout.huge_image_view_activity, null);
         mLargeImageView = (LargeImageView) view.findViewById(R.id.id_large_image);
         try {
@@ -31,4 +27,6 @@ public class HugeImageViewFragment extends BaseDemosFragment {
         }
         return view;
     }
+
+
 }

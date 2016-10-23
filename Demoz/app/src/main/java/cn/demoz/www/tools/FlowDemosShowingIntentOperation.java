@@ -3,7 +3,7 @@ package cn.demoz.www.tools;
 import android.content.Context;
 import android.content.Intent;
 
-import cn.demoz.www.demoactivity.FlowDemosShowingActivity;
+import cn.demoz.www.demos.activity.FlowDemosShowingActivity;
 
 public class FlowDemosShowingIntentOperation {
 

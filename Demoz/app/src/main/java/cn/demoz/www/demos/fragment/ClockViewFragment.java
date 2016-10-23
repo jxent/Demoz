@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import cn.demoz.www.R;
@@ -14,13 +16,20 @@ import cn.demoz.www.demos.view.ClockView;
 public class ClockViewFragment extends BaseDemosFragment implements View.OnClickListener{
 
     ClockView clockView;
+    LinearLayout demoDesc;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    @Override
+    public View setDemoContentView(LayoutInflater inflater) {
         View view = inflater.inflate(R.layout.layout_clock_view_fragment, null);
         final TextView tv = (TextView) view.findViewById(R.id.tv);
         clockView = (ClockView) view.findViewById(R.id.clockView);
+        demoDesc = (LinearLayout) view.findViewById(R.id.demo_desc);
 
         view.findViewById(R.id.btn1).setOnClickListener(this);
         view.findViewById(R.id.btn2).setOnClickListener(this);
@@ -32,7 +41,23 @@ public class ClockViewFragment extends BaseDemosFragment implements View.OnClick
                 tv.setText(String.format("%s-%s-%s", hour, minute, second));
             }
         });
-        
+
+        demoDesc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggleDemoDesc(demoDesc);
+            }
+        });
+        demoDesc.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                demoDesc.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                demoFoldedHeight = demoDesc.getHeight();
+                if(demoFoldedHeight > DEMO_FOLDED_MAX_HEIGHT){
+                    demoFoldedHeight = DEMO_FOLDED_MAX_HEIGHT;
+                }
+            }
+        });
         return view;
     }
 
@@ -50,4 +75,6 @@ public class ClockViewFragment extends BaseDemosFragment implements View.OnClick
                 break;
         }
     }
+
+
 }
