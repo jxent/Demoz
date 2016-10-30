@@ -1,1 +1,1 @@
-include ':app', ':ptr-lib', ':servicelibrary', ':jlog'
+include ':app', ':ptr-lib', ':servicelibrary', ':adrlog'

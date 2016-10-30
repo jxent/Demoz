@@ -6,6 +6,8 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.1.0'
+//        classpath 'com.github.dcendents:android-maven-plugin:1.2'
+//        classpath 'com.novoda:bintray-release:0.3.4'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -17,3 +19,17 @@ allprojects {
         jcenter()
     }
 }
+
+//def versionCode = "1.2.3"
+//
+//ext{
+//    versionCode = "1.2.3"
+//    // -------- bintray config ----------
+//    userOrg = "JasonWingoal"
+//    groupId = "com.zencode"     // jcenter上的路径
+//    publishVersion = versionCode    // 版本号
+//    desc = "a log util" // 描述，非必要
+//    uploadName = "adrlog" // 上传在bintray的文件夹
+//    website = ""    // 网站，非必要
+//    licences = ["Apache-2.0"]
+//}
