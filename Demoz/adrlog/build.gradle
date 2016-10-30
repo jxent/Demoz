@@ -1,0 +1,38 @@
+apply plugin: 'com.android.library'
+//apply plugin: 'com.novoda.bintray-release'
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion '21.1.2'
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 21
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:21.0.3'
+}
+
+//// 发布到jcenter
+//publish {
+//    artifactId = 'adrlog'//模块名称
+//    userOrg = rootProject.userOrg
+//    groupId = rootProject.groupId
+//    uploadName = rootProject.uploadName //模块上传后所在的文件夹名称
+//    publishVersion = rootProject.publishVersion//模块版本号
+//    desc = rootProject.description//模块的描述
+//    website = rootProject.website //模块的网站
+//    licences = rootProject.licences //模块的licences
+//}
