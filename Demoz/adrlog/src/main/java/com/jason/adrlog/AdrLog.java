@@ -14,9 +14,10 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * 分级别打印日志，设置过滤级别，只输出高于此级别的日志
- * 格式化打印json、xml数据、本地保存file数据
- * 使用：
+ * 功能：分级别打印日志，按级别过滤级别，日志开关、保存到本地文件，日志格式化
+ * 支持：普通log、json数据、xml数据、文本文件、Bundle
+ * todo: 支持打印Bundle
+ * 使用方法：
  *     AdrLog.getBuilder(getApplicationContext())
  *         .setDefTag("jason")
  *         .setLogSwitch(true)
@@ -44,16 +45,17 @@ public class AdrLog {
     public static final int F = 0x08;    // file
 
     public static final String[] types = new String[]{"Verbose", "Debug", "Info",
-            "Warning", "Error", "Assert"};
+                                            "Warning", "Error", "Assert"};
 
     private static boolean logSwitch = true;        // 是否打印log, 不打印同时也不会输出到文件
     private static boolean log2FileSwitch = false;  // 是否输出到文件
     // 打印或输出log的级别，依次是(V D I W E A)，V全部输出，E 只输出E及A级别log
     private static int logLevel = D;
-    private static String defaultTag = "JOGGER-LOG";
+    private static String defaultTag = "AdrLog";
     private static String outputFileDir = null;
 
-    private static final int STACK_TRACE_INDEX = 5;
+    private static final int BASE_STACK_TRACE_INDEX = 4;
+    private static int stackTraceIndex = BASE_STACK_TRACE_INDEX;
     public static final int JSON_INDENT = 4;
     public static final String LINE_SEPARATOR = System.getProperty("line.separator");   // 系统的换行符
     public static final String NULL_TIPS = "Log with null object";
@@ -95,7 +97,7 @@ public class AdrLog {
         private boolean logSwitch = true;
         private boolean log2FileSwitch = false;
         private int logLevel = D;
-        private String defTag = "JOGGER-LOG";
+        private String defTag = "AdrLog";
 
         public Builder setLogSwitch(boolean logSwitch) {
             this.logSwitch = logSwitch;
@@ -138,10 +140,12 @@ public class AdrLog {
     }
 
     public static void v(String msg) {
+        stackTraceIndex++;
         v(defaultTag, msg);
     }
 
     public static void v(String tag, Object... msg) {
+        stackTraceIndex++;
         v(tag, null, msg);
     }
 
@@ -152,14 +156,17 @@ public class AdrLog {
      * @param msg
      */
     public static void v(String tag, Throwable tr, Object... msg) {
+        stackTraceIndex++;
         log(V, tag, tr, msg);
     }
 
     public static void d(String msg) {
+        stackTraceIndex++;
         d(defaultTag, msg);
     }
 
     public static void d(String tag, Object... msg) {// 调试信息
+        stackTraceIndex++;
         d(tag, null, msg);
     }
 
@@ -170,14 +177,17 @@ public class AdrLog {
      * @param msg
      */
     public static void d(String tag, Throwable tr, Object... msg) {
+        stackTraceIndex++;
         log(D, tag, tr, msg);
     }
 
     public static void i(String msg) {
+        stackTraceIndex++;
         i(defaultTag, msg);
     }
 
     public static void i(String tag, Object... msg) {
+        stackTraceIndex++;
         i(tag, null, msg);
     }
 
@@ -188,14 +198,17 @@ public class AdrLog {
      * @param msg
      */
     public static void i(String tag, Throwable tr, Object... msg) {
+        stackTraceIndex++;
         log(I, tag, tr, msg);
     }
 
     public static void w(String msg) {
+        stackTraceIndex++;
         w(defaultTag, msg);
     }
 
     public static void w(String tag, Object... msg) {
+        stackTraceIndex++;
         w(tag, null, msg);
     }
 
@@ -206,14 +219,17 @@ public class AdrLog {
      * @param msg
      */
     public static void w(String tag, Throwable tr, Object... msg) {
+        stackTraceIndex++;
         log(W, tag, tr, msg);
     }
 
     public static void e(String msg) {
+        stackTraceIndex++;
         e(defaultTag, msg);
     }
 
     public static void e(String tag, Object... msg) {
+        stackTraceIndex++;
         e(tag, null, msg);
     }
 
@@ -224,14 +240,17 @@ public class AdrLog {
      * @param msg
      */
     public static void e(String tag, Throwable tr, Object... msg) {
+        stackTraceIndex++;
         log(E, tag, tr, msg);
     }
 
     public static void a(String msg) {
+        stackTraceIndex++;
         a(defaultTag, msg);
     }
 
     public static void a(String tag, Object... msg) {
+        stackTraceIndex++;
         a(tag, null, msg);
     }
 
@@ -242,6 +261,7 @@ public class AdrLog {
      * @param msg
      */
     public static void a(String tag, Throwable tr, Object... msg) {
+        stackTraceIndex++;
         log(A, tag, tr, msg);
     }
 
@@ -251,6 +271,7 @@ public class AdrLog {
      * @param jsonStr
      */
     public static void json(String tag, String jsonStr){
+        stackTraceIndex++;
         log(J, tag, null, jsonStr);
     }
 
@@ -260,6 +281,7 @@ public class AdrLog {
      * @param xmlStr
      */
     public static void xml(String tag, String xmlStr){
+        stackTraceIndex++;
         log(X, tag, null, xmlStr);
     }
 
@@ -270,18 +292,21 @@ public class AdrLog {
      * @param filePath
      */
     public static void file(String tag, String filePath){
+        stackTraceIndex++;
         log(F, tag, null, filePath);
     }
 
     private static void log(int type, String tag, Throwable tr, Object... objects) {
         if (logSwitch) {
             String[] contents = wrapperContent(tag, objects);
+            stackTraceIndex = BASE_STACK_TRACE_INDEX; // 复原
             String wrappedTag = contents[0];
             String wrappedMsg = contents[1];
             String wrappedHeaderInfo = contents[2];
+            String wrappedHeaderWithoutMethod = contents[3];
 
             if(type <= A && type >= logLevel){
-                Util.printDefault(type, wrappedTag, wrappedMsg, tr);
+                Util.printDefault(type, wrappedTag, wrappedMsg, wrappedHeaderWithoutMethod, tr);
             }
 
             if(J == type){
@@ -305,7 +330,7 @@ public class AdrLog {
     private static String[] wrapperContent(String tagStr, Object... objects) {
         // 返回当前线程的栈跟踪元素信息数组
         StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
-        StackTraceElement targetElement = stackTrace[STACK_TRACE_INDEX];
+        StackTraceElement targetElement = stackTrace[stackTraceIndex];
         String className = targetElement.getClassName();
         String[] classNameInfo = className.split("\\.");
         if (classNameInfo.length > 0) {
@@ -323,7 +348,7 @@ public class AdrLog {
             lineNumber = 0;
         }
 
-        String methodNameShort = methodName.substring(0, 1).toUpperCase() + methodName.substring(1);
+//        String methodNameShort = methodName.substring(0, 1).toUpperCase() + methodName.substring(1);
 
         String tag = (tagStr == null ? className : tagStr);
 
@@ -332,9 +357,10 @@ public class AdrLog {
         }
 
         String msg = (objects == null) ? NULL_TIPS : getObjectsString(objects);
-        String headString = "[ (" + className + ":" + lineNumber + ")#" + methodNameShort + " ] ";
+        String headString = "[(" + className + ":" + lineNumber + ")#" + methodName+"]";
+//        String headStringWithoutMethod = "(" + className + ":" + lineNumber + ")";
 
-        return new String[]{tag, msg, headString};
+        return new String[]{tag, msg, headString, headString};
     }
 
     private static String getObjectsString(Object... objects) {

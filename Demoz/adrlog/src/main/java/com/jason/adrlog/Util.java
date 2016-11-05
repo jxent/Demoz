@@ -83,43 +83,44 @@ public class Util {
      * @param msg   具体日志信息
      * @param tr    异常Throwable对象
      */
-    public static void printDefault(int type, String tag, String msg, Throwable tr) {
-
-        int index = 0;
+    public static void printDefault(int type, String tag, String msg, String header, Throwable tr) {
+        // 分块输出message，块单位大小4000个字符
         int maxLength = 4000;
+        int index = 0;  // 计数
         int countOfSub = msg.length() / maxLength;
 
         if (countOfSub > 0) {
             for (int i = 0; i < countOfSub; i++) {
                 String sub = msg.substring(index, index + maxLength);
-                printSub(type, tag, sub, tr);
+                printSub(type, tag, sub, header, tr);
                 index += maxLength;
             }
-            printSub(type, tag, msg.substring(index, msg.length()), tr);
+            printSub(type, tag, msg.substring(index, msg.length()), header, tr);
         } else {
-            printSub(type, tag, msg, tr);
+            printSub(type, tag, msg, header, tr);
         }
     }
 
-    private static void printSub(int type, String tag, String sub, Throwable tr) {
+    // message数据过大，分块输出log
+    private static void printSub(int type, String tag, String sub, String header, Throwable tr) {
         switch (type) {
             case AdrLog.V:
-                Log.v(tag, sub, tr);
+                Log.v(tag, header + " " + sub, tr);
                 break;
             case AdrLog.D:
-                Log.d(tag, sub, tr);
+                Log.d(tag, header + " " + sub, tr);
                 break;
             case AdrLog.I:
-                Log.i(tag, sub, tr);
+                Log.i(tag, header + " " + sub, tr);
                 break;
             case AdrLog.W:
-                Log.w(tag, sub, tr);
+                Log.w(tag, header + " " + sub, tr);
                 break;
             case AdrLog.E:
-                Log.e(tag, sub, tr);
+                Log.e(tag, header + " " + sub, tr);
                 break;
             case AdrLog.A:
-                Log.wtf(tag, sub, new RuntimeException("你回来啦"));
+                Log.wtf(tag, header + " " + sub, tr);
                 break;
         }
     }
