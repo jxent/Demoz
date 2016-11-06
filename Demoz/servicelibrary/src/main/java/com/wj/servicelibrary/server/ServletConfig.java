@@ -9,6 +9,7 @@ import com.wj.servicelibrary.servlet.GameServlet;
 import com.wj.servicelibrary.servlet.HomeServlet;
 import com.wj.servicelibrary.servlet.HotServlet;
 import com.wj.servicelibrary.servlet.ImageServlet;
+import com.wj.servicelibrary.servlet.MultiDownloadingServlet;
 import com.wj.servicelibrary.servlet.RecommendServlet;
 import com.wj.servicelibrary.servlet.SubjectServlet;
 import com.wj.servicelibrary.servlet.UserServlet;
@@ -29,6 +30,7 @@ public class ServletConfig {
 		handler.addServlet(new ServletHolder(new DownloadServlet()), "/download");
 		handler.addServlet(new ServletHolder(new UserServlet()), "/user");
 		handler.addServlet(new ServletHolder(new HotServlet()), "/hot");
-		handler.addServlet(new ServletHolder(new FlowDemosShowingServlet()), "/demos");
+		handler.addServlet(new ServletHolder(new FlowDemosShowingServlet()), "/flow_demos");
+		handler.addServlet(new ServletHolder(new MultiDownloadingServlet()), "/multi_downloading");
 	}
 }

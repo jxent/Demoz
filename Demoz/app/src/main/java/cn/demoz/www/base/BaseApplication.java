@@ -11,7 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 
-import com.jason.adrlog.AdrLog;
+import com.jason.adrlog.SLog;
 import com.wj.servicelibrary.server.WebService;
 
 import org.mortbay.ijetty.log.AndroidLog;
@@ -46,17 +46,17 @@ public class BaseApplication extends Application {
         mainTid = android.os.Process.myTid();
         handler = new Handler();
 
-        AdrLog.getBuilder(getApplicationContext())
+        SLog.getBuilder(getApplicationContext())
                 .setDefTag("jason")
                 .setLogSwitch(true)
                 .setLog2FileSwitch(false)
-                .setLogLevel(AdrLog.V)
+                .setLogLevel(SLog.V)
                 .create();
 
         // 启动提供数据的后台服务
         mServiceIntent = new Intent(this, WebService.class);
         startService(mServiceIntent);
-        AdrLog.i(TAG, "Data Service 已启动...");
+        SLog.i(TAG, "Data Service 已启动...");
 
         listenForForeground();
         listenForScreenTurningOff();

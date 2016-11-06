@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.animation.TranslateAnimation;
 import android.widget.ScrollView;
 
-import com.jason.adrlog.AdrLog;
+import com.jason.adrlog.SLog;
 
 /**
  * 仿ios带弹性拉伸的ScrollView
@@ -85,7 +85,7 @@ public class ElasticScrollView extends ScrollView {
         // 记录ScrollView中的唯一子控件的位置信息, 并且在整个控件的生命周期中会保持不变
         originalRect.set(contentView.getLeft(), contentView.getTop(),
                 contentView.getRight(), contentView.getBottom());
-        AdrLog.e("wingoal", contentView.getLeft(),
+        SLog.e("wingoal", contentView.getLeft(),
                             contentView.getTop(),
                             contentView.getRight(),
                             contentView.getBottom());

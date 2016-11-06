@@ -9,7 +9,7 @@ import com.alibaba.fastjson.JSONObject;
 
 import cn.demoz.www.bean.FlowDemosItemBean;
 
-public class DemosProtocol extends BaseProtocol<SparseArray<FlowDemosItemBean>> {
+public class FlowDemosProtocol extends BaseProtocol<SparseArray<FlowDemosItemBean>> {
 
     @Override
     public SparseArray<FlowDemosItemBean> parseJson(String json) {
@@ -36,7 +36,7 @@ public class DemosProtocol extends BaseProtocol<SparseArray<FlowDemosItemBean>> 
 
     @Override
     public String getKey() {
-        return "demos";
+        return "flow_demos";
     }
 
 }

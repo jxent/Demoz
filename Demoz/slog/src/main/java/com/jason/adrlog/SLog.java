@@ -18,19 +18,19 @@ import java.util.Locale;
  * 支持：普通log、json数据、xml数据、文本文件、Bundle
  * todo: 支持打印Bundle
  * 使用方法：
- *     AdrLog.getBuilder(getApplicationContext())
+ *     SLog.getBuilder(getApplicationContext())
  *         .setDefTag("jason")
  *         .setLogSwitch(true)
  *         .setLog2FileSwitch(false)
- *         .setLogLevel(AdrLog.V)
+ *         .setLogLevel(SLog.V)
  *         .create();
- *     AdrLog.v("我是log");
- *     AdrLog.a("tag", "我是log");
+ *     SLog.v("我是log");
+ *     SLog.a("tag", "我是log");
  *
  * */
-public class AdrLog {
+public class SLog {
 
-    private AdrLog() {
+    private SLog() {
         throw new UnsupportedOperationException("对象不能被实例化！");
     }
 
@@ -51,7 +51,7 @@ public class AdrLog {
     private static boolean log2FileSwitch = false;  // 是否输出到文件
     // 打印或输出log的级别，依次是(V D I W E A)，V全部输出，E 只输出E及A级别log
     private static int logLevel = D;
-    private static String defaultTag = "AdrLog";
+    private static String defaultTag = "SLog";
     private static String outputFileDir = null;
 
     private static final int BASE_STACK_TRACE_INDEX = 4;
@@ -73,10 +73,10 @@ public class AdrLog {
      */
     public static void init(Context context, boolean logSwitch, boolean log2FileSwitch, int logLevel, String tag) {
         setOutputFileDir(context);
-        AdrLog.logSwitch = logSwitch;
-        AdrLog.log2FileSwitch = log2FileSwitch;
-        AdrLog.logLevel = logLevel;
-        AdrLog.defaultTag = tag;
+        SLog.logSwitch = logSwitch;
+        SLog.log2FileSwitch = log2FileSwitch;
+        SLog.logLevel = logLevel;
+        SLog.defaultTag = tag;
     }
 
     /**
@@ -97,7 +97,7 @@ public class AdrLog {
         private boolean logSwitch = true;
         private boolean log2FileSwitch = false;
         private int logLevel = D;
-        private String defTag = "AdrLog";
+        private String defTag = "SLog";
 
         public Builder setLogSwitch(boolean logSwitch) {
             this.logSwitch = logSwitch;
@@ -120,10 +120,10 @@ public class AdrLog {
         }
 
         public void create() {
-            AdrLog.logSwitch = logSwitch;
-            AdrLog.log2FileSwitch = log2FileSwitch;
-            AdrLog.logLevel = logLevel;
-            AdrLog.defaultTag = defTag;
+            SLog.logSwitch = logSwitch;
+            SLog.log2FileSwitch = log2FileSwitch;
+            SLog.logLevel = logLevel;
+            SLog.defaultTag = defTag;
         }
     }
 

@@ -104,22 +104,22 @@ public class Util {
     // message数据过大，分块输出log
     private static void printSub(int type, String tag, String sub, String header, Throwable tr) {
         switch (type) {
-            case AdrLog.V:
+            case SLog.V:
                 Log.v(tag, header + " " + sub, tr);
                 break;
-            case AdrLog.D:
+            case SLog.D:
                 Log.d(tag, header + " " + sub, tr);
                 break;
-            case AdrLog.I:
+            case SLog.I:
                 Log.i(tag, header + " " + sub, tr);
                 break;
-            case AdrLog.W:
+            case SLog.W:
                 Log.w(tag, header + " " + sub, tr);
                 break;
-            case AdrLog.E:
+            case SLog.E:
                 Log.e(tag, header + " " + sub, tr);
                 break;
-            case AdrLog.A:
+            case SLog.A:
                 Log.wtf(tag, header + " " + sub, tr);
                 break;
         }
@@ -134,11 +134,11 @@ public class Util {
             if (msg.startsWith("{")) {
                 isValid = true;
                 JSONObject jsonObject = new JSONObject(msg);
-                message = jsonObject.toString(AdrLog.JSON_INDENT);
+                message = jsonObject.toString(SLog.JSON_INDENT);
             } else if (msg.startsWith("[")) {
                 isValid = true;
                 JSONArray jsonArray = new JSONArray(msg);
-                message = jsonArray.toString(AdrLog.JSON_INDENT);
+                message = jsonArray.toString(SLog.JSON_INDENT);
             } else {
                 isValid = false;
                 message = "[※JSON语法错误] " + msg;
@@ -149,8 +149,8 @@ public class Util {
         }
 
         printJsonFormatLine(tag, true);
-        message = headString + AdrLog.LINE_SEPARATOR + message;
-        String[] lines = message.split(AdrLog.LINE_SEPARATOR);
+        message = headString + SLog.LINE_SEPARATOR + message;
+        String[] lines = message.split(SLog.LINE_SEPARATOR);
         for (String line : lines) {
             if(isValid) {
                 Log.d(tag, "║ " + line);
@@ -169,11 +169,11 @@ public class Util {
             xml = formatXML(xml);
             xml = headString + "\n" + xml;
         } else {
-            xml = headString + AdrLog.NULL_TIPS;
+            xml = headString + SLog.NULL_TIPS;
         }
 
         printXmlFormatLine(tag, true);
-        String[] lines = xml.split(AdrLog.LINE_SEPARATOR);
+        String[] lines = xml.split(SLog.LINE_SEPARATOR);
         for (String line : lines) {
             if (!isEmpty(line)) {
                 Log.d(tag, "│ " + line);
