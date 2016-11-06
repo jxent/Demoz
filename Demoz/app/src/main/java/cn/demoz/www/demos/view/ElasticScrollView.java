@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.animation.TranslateAnimation;
 import android.widget.ScrollView;
 
+import com.jason.adrlog.AdrLog;
+
 /**
  * 仿ios带弹性拉伸的ScrollView
  * 博客地址：http://blog.csdn.net/zhangjg_blog/article/details/19193671
@@ -72,11 +74,21 @@ public class ElasticScrollView extends ScrollView {
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
 
-        if (contentView == null) return;
+        if (contentView == null) {
+            if(getChildCount() > 0){
+                contentView = getChildAt(0);
+            }else {
+                return;
+            }
+        }
 
         // 记录ScrollView中的唯一子控件的位置信息, 并且在整个控件的生命周期中会保持不变
         originalRect.set(contentView.getLeft(), contentView.getTop(),
                 contentView.getRight(), contentView.getBottom());
+        AdrLog.e("wingoal", contentView.getLeft(),
+                            contentView.getTop(),
+                            contentView.getRight(),
+                            contentView.getBottom());
     }
 
     /**
@@ -85,12 +97,19 @@ public class ElasticScrollView extends ScrollView {
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
 
-        if (contentView == null) {
+//        if (contentView == null) {
+//            if(getChildCount() > 0){
+//                contentView = getChildAt(0);
+//            }else {
+//                return super.dispatchTouchEvent(ev);
+//            }
+//        }
+
+        if(contentView == null){
             return super.dispatchTouchEvent(ev);
         }
 
         int action = ev.getAction();
-
         switch (action) {
             case MotionEvent.ACTION_DOWN:
 
@@ -124,7 +143,7 @@ public class ElasticScrollView extends ScrollView {
 
                 break;
             case MotionEvent.ACTION_MOVE:
-                // 在移动的过程中，既没有滚动到可以上拉的程度，也没有滚动到可以下拉的程度，赋个值不作计算break掉
+                // 在移动的过程中，既没有滚动到可以上拉的程度，也没有滚动到可以下拉的程度，计算状态赋值并break
                 if (!canPullDown && !canPullUp) {
                     startY = ev.getY();
                     canPullDown = isCanPullDown();
