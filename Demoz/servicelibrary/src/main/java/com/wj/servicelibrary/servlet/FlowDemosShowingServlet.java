@@ -26,7 +26,7 @@ public class FlowDemosShowingServlet extends BaseServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setStatus(HttpServletResponse.SC_OK);
 
-		String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Download/" + "WebInfos/";
+		String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + "WebInfos/";
 		File jsonFile = new File(path, localJsonPath);
 
 		// 使用okio API读取服务器json文件并返回给客户端json数据

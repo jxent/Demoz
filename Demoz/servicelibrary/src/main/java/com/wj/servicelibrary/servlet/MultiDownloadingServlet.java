@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 
 public class MultiDownloadingServlet extends BaseServlet {
 
-
 	private static final long serialVersionUID = 1L;
 	private static final java.lang.String TAG = "MultiDownloadingServlet";
 	private static final int ONCE_READ = 1024 * 6;
@@ -38,7 +37,7 @@ public class MultiDownloadingServlet extends BaseServlet {
 		long start = 0;
 		long end = 0;
 
-		String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Download/" + "WebInfos/";
+		String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + "WebInfos/";
 		File file = new File(path, downloadingFileName);
 
 //		String filePath = this.getServletContext().getRealPath("/");// 获取真实路径

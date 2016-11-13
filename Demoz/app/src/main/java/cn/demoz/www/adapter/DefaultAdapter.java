@@ -104,7 +104,6 @@ public abstract class DefaultAdapter<Data> extends BaseAdapter implements OnItem
                 if (convertView == null) {
                     holder = getHolder();
                 } else {
-                    System.out.println("aaa");
                     holder = (BaseHolder) convertView.getTag();
                 }
                 if (position < datas.size()) {
