@@ -1,4 +1,4 @@
-package com.jason.adrlog;
+package com.jason.slog;
 
 import android.text.TextUtils;
 import android.util.Log;

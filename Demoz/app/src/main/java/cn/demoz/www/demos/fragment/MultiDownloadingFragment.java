@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 
-import com.jason.adrlog.SLog;
+import com.jason.slog.SLog;
 
 import java.io.BufferedReader;
 import java.io.File;

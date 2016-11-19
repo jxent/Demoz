@@ -1,4 +1,4 @@
-package com.jason.adrlog;
+package com.jason.slog;
 
 import android.content.Context;
 import android.os.Environment;
@@ -64,7 +64,7 @@ public class SLog {
     private static final String JAVA_FILE_SUFFIX = ".java";
 
     /**
-     * 初始化AdrLog，与getBuilder作用一致
+     * 初始化SLog，与getBuilder作用一致
      * @param context
      * @param logSwitch
      * @param log2FileSwitch
@@ -80,7 +80,7 @@ public class SLog {
     }
 
     /**
-     * 获取初始化Builder对象，调用create()初始化AdrLog
+     * 获取初始化Builder对象，调用create()初始化SLog
      * @param context
      * @return
      */

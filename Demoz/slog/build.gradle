@@ -27,7 +27,7 @@ dependencies {
 
 //// 发布到jcenter
 //publish {
-//    artifactId = 'adrlog'//模块名称
+//    artifactId = 'slog'//模块名称
 //    userOrg = rootProject.userOrg
 //    groupId = rootProject.groupId
 //    uploadName = rootProject.uploadName //模块上传后所在的文件夹名称

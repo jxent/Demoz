@@ -11,7 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 
-import com.jason.adrlog.SLog;
+import com.jason.slog.SLog;
 import com.wj.servicelibrary.server.WebService;
 
 import org.mortbay.ijetty.log.AndroidLog;

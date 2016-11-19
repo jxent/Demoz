@@ -29,7 +29,7 @@ allprojects {
 //    groupId = "com.zencode"     // jcenter上的路径
 //    publishVersion = versionCode    // 版本号
 //    desc = "a log util" // 描述，非必要
-//    uploadName = "adrlog" // 上传在bintray的文件夹
+//    uploadName = "slog" // 上传在bintray的文件夹
 //    website = ""    // 网站，非必要
 //    licences = ["Apache-2.0"]
 //}

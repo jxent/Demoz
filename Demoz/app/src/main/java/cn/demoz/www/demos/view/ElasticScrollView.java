@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.animation.TranslateAnimation;
 import android.widget.ScrollView;
 
-import com.jason.adrlog.SLog;
+import com.jason.slog.SLog;
 
 /**
  * 仿ios带弹性拉伸的ScrollView
