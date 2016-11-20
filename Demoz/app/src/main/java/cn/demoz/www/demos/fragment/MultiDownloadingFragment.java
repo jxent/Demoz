@@ -40,6 +40,7 @@ public class MultiDownloadingFragment extends BaseDemosFragment {
         }
     };
     private String path;
+    private String mDemoDesc = "使用 HttpURLConnection 实现下载并且断点续传的功能";
 
     @Override
     public View setDemoContentView(Context context, LayoutInflater inflater) {
@@ -201,5 +202,10 @@ public class MultiDownloadingFragment extends BaseDemosFragment {
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    protected String getDemoDesc() {
+        return mDemoDesc != null ? mDemoDesc : "";
     }
 }

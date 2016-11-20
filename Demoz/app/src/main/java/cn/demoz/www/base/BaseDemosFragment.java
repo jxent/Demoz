@@ -8,7 +8,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.animation.ObjectAnimator;
@@ -27,6 +29,7 @@ public abstract class BaseDemosFragment extends Fragment {
 
     protected ElasticScrollView demoContent;
     protected LinearLayout demoDesc;
+    private String mDemoDesc = "";
 
     private Context mContext;
     @Override
@@ -42,8 +45,33 @@ public abstract class BaseDemosFragment extends Fragment {
         demoContent = (ElasticScrollView) view.findViewById(R.id.demo_content);
         demoDesc = (LinearLayout) view.findViewById(R.id.demo_desc);
         if(isDemoDescShown()){
+            demoDesc.setVisibility(View.VISIBLE);
+            if(demoDesc.getChildCount() > 0){
+                ((TextView)demoDesc.getChildAt(0)).setText(getDemoDesc());
+            }
+        }else {
             demoDesc.setVisibility(View.GONE);
         }
+
+        demoDesc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggleDemoDesc(demoDesc);
+            }
+        });
+
+        demoDesc.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                demoDesc.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                demoFoldedHeight = demoDesc.getHeight();
+                if(demoFoldedHeight > DEMO_FOLDED_MAX_HEIGHT){
+                    demoFoldedHeight = DEMO_FOLDED_MAX_HEIGHT;
+                }
+            }
+        });
+
+
         if(demoContent.getChildCount() != 0){
             demoContent.removeAllViews();
         }
@@ -61,13 +89,15 @@ public abstract class BaseDemosFragment extends Fragment {
         return view;
     }
 
+    protected abstract String getDemoDesc();
+
     // 如果子View不想有弹性效果，覆写此方法，并返回true
     protected boolean childWantToCloseElastic(){
         return false;
     }
 
     protected boolean isDemoDescShown(){
-        return false;
+        return true;
     }
 
     public abstract View setDemoContentView(Context context, LayoutInflater inflater);

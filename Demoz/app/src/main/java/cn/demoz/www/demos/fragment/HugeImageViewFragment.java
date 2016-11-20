@@ -1,7 +1,6 @@
 package cn.demoz.www.demos.fragment;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +16,12 @@ import cn.demoz.www.view.LargeImageView;
 
 public class HugeImageViewFragment extends BaseDemosFragment {
 
+    private String mDemoDesc = "显示一张巨图的demo，用到BitmapRegionDecoder，参考：http://blog.csdn.net/lmj623565791/article/details/49300989";
     @Override
     public View setDemoContentView(Context context, LayoutInflater inflater) {
         LargeImageView largeImageView = new LargeImageView(context);
         largeImageView.setLayoutParams(new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        largeImageView.setBackgroundColor(Color.RED);
 
         try {
             InputStream inputStream = getActivity().getAssets().open("world_map.jpg");
@@ -39,5 +38,10 @@ public class HugeImageViewFragment extends BaseDemosFragment {
     @Override
     public boolean childWantToCloseElastic(){
         return true;
+    }
+
+    @Override
+    protected String getDemoDesc() {
+        return mDemoDesc != null ? mDemoDesc : "";
     }
 }

@@ -12,6 +12,8 @@ import cn.demoz.www.base.BaseDemosFragment;
  */
 public class UnknownFragment extends BaseDemosFragment {
 
+    private String mDemoDesc = "";
+
     @Override
     public View setDemoContentView(Context context, LayoutInflater inflater) {
         View view = inflater.inflate(R.layout.layout_unknown_fragment, null);
@@ -20,6 +22,11 @@ public class UnknownFragment extends BaseDemosFragment {
 
     @Override
     protected boolean isDemoDescShown() {
-        return true;
+        return false;
+    }
+
+    @Override
+    protected String getDemoDesc() {
+        return mDemoDesc != null ? mDemoDesc : "";
     }
 }

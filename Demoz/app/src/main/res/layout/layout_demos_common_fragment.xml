@@ -12,9 +12,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:showIn="@layout/activity_main">
-        <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
-        <!--tools:context="com.chuwe1.customizeview.MainActivity"-->
-
 
     </cn.demoz.www.demos.view.ElasticScrollView>
 
@@ -22,14 +19,14 @@
     <LinearLayout
         android:id="@+id/demo_desc"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="35dp"
         android:layout_alignParentBottom="true"
         android:background="#99999999">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="显示一张巨图的demo，用到BitmapRegionDecoder，参考：http://blog.csdn.net/lmj623565791/article/details/49300989"/>
+            tools:text="显示一张巨图的demo，用到BitmapRegionDecoder，参考：http://blog.csdn.net/lmj623565791/article/details/49300989"/>
 
     </LinearLayout>
 

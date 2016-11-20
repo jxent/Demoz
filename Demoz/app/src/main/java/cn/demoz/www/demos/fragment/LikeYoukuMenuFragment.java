@@ -14,6 +14,7 @@ import cn.demoz.www.view.LargeImageView;
 public class LikeYoukuMenuFragment extends BaseDemosFragment {
 
     private LargeImageView mLargeImageView;
+    private String mDemoDesc = "";
 
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
@@ -48,5 +49,10 @@ public class LikeYoukuMenuFragment extends BaseDemosFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected String getDemoDesc() {
+        return mDemoDesc != null ? mDemoDesc : "";
     }
 }

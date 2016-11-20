@@ -14,6 +14,7 @@ import cn.demoz.www.view.LargeImageView;
 public class QQBubbleFragment extends BaseDemosFragment {
 
     private LargeImageView mLargeImageView;
+    private String mDemoDesc = "";
 
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
@@ -50,5 +51,10 @@ public class QQBubbleFragment extends BaseDemosFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected String getDemoDesc() {
+        return mDemoDesc != null ? mDemoDesc : "";
     }
 }

@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import cn.demoz.www.R;
@@ -17,7 +16,8 @@ import cn.demoz.www.demos.view.ClockView;
 public class ClockViewFragment extends BaseDemosFragment implements View.OnClickListener{
 
     ClockView clockView;
-    LinearLayout demoDesc;
+//    LinearLayout demoDesc;
+    private String mDemoDesc = "Android自定义控件 - ClockView实现时钟效果，参照博客http://www.jianshu.com/p/fe65f5d7a60b";
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -30,7 +30,7 @@ public class ClockViewFragment extends BaseDemosFragment implements View.OnClick
         View view = inflater.inflate(R.layout.layout_clock_view_fragment, null);
         final TextView tv = (TextView) view.findViewById(R.id.tv);
         clockView = (ClockView) view.findViewById(R.id.clockView);
-        demoDesc = (LinearLayout) view.findViewById(R.id.demo_desc);
+//        demoDesc = (LinearLayout) view.findViewById(R.id.demo_desc);
 
         view.findViewById(R.id.btn1).setOnClickListener(this);
         view.findViewById(R.id.btn2).setOnClickListener(this);
@@ -43,12 +43,12 @@ public class ClockViewFragment extends BaseDemosFragment implements View.OnClick
             }
         });
 
-        demoDesc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toggleDemoDesc(demoDesc);
-            }
-        });
+//        demoDesc.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                toggleDemoDesc(demoDesc);
+//            }
+//        });
         demoDesc.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
@@ -60,6 +60,11 @@ public class ClockViewFragment extends BaseDemosFragment implements View.OnClick
             }
         });
         return view;
+    }
+
+    @Override
+    protected String getDemoDesc() {
+        return mDemoDesc!=null?mDemoDesc:"";
     }
 
     @Override
