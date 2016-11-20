@@ -1,5 +1,6 @@
 package cn.demoz.www.demos.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -42,7 +43,7 @@ public class WaterRippleFragment extends BaseDemosFragment {
     }
 
     @Override
-    public View setDemoContentView(LayoutInflater inflater) {
+    public View setDemoContentView(Context context, LayoutInflater inflater) {
         return null;
     }
 

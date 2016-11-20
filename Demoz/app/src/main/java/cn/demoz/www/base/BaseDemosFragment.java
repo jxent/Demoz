@@ -1,5 +1,6 @@
 package cn.demoz.www.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -27,6 +28,13 @@ public abstract class BaseDemosFragment extends Fragment {
     protected ElasticScrollView demoContent;
     protected LinearLayout demoDesc;
 
+    private Context mContext;
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        mContext = getActivity();
+        super.onCreate(savedInstanceState);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -39,18 +47,30 @@ public abstract class BaseDemosFragment extends Fragment {
         if(demoContent.getChildCount() != 0){
             demoContent.removeAllViews();
         }
-        View demoView = setDemoContentView(inflater);
+        View demoView = setDemoContentView(mContext, inflater);
+
+        if(childWantToCloseElastic()){
+            demoContent.setSwitcher(false);
+        }
+
         if(demoView != null) {
             demoContent.addView(demoView);
+            // TODO 这一步很关键，因为这里的父view是ScrollView，如果不设定时，子View的高度mode会是Unsupported，不知道为什么，从而measuredHeight是0，显示不出来
+            demoContent.setFillViewport(true);
         }
         return view;
+    }
+
+    // 如果子View不想有弹性效果，覆写此方法，并返回true
+    protected boolean childWantToCloseElastic(){
+        return false;
     }
 
     protected boolean isDemoDescShown(){
         return false;
     }
 
-    public abstract View setDemoContentView(LayoutInflater inflater);
+    public abstract View setDemoContentView(Context context, LayoutInflater inflater);
 
 
     /**

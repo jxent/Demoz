@@ -1,5 +1,6 @@
 package cn.demoz.www.demos.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -25,7 +26,7 @@ public class ClockViewFragment extends BaseDemosFragment implements View.OnClick
     }
 
     @Override
-    public View setDemoContentView(LayoutInflater inflater) {
+    public View setDemoContentView(Context context, LayoutInflater inflater) {
         View view = inflater.inflate(R.layout.layout_clock_view_fragment, null);
         final TextView tv = (TextView) view.findViewById(R.id.tv);
         clockView = (ClockView) view.findViewById(R.id.clockView);

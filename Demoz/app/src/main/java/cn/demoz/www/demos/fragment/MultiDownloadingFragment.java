@@ -1,5 +1,6 @@
 package cn.demoz.www.demos.fragment;
 
+import android.content.Context;
 import android.os.Environment;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -41,7 +42,7 @@ public class MultiDownloadingFragment extends BaseDemosFragment {
     private String path;
 
     @Override
-    public View setDemoContentView(LayoutInflater inflater) {
+    public View setDemoContentView(Context context, LayoutInflater inflater) {
         View view = inflater.inflate(R.layout.multi_downloading_layout, null);
         toDownload = (Button) view.findViewById(R.id.to_download);
         pbDownloading = (ProgressBar) view.findViewById(R.id.pb_downloading);
