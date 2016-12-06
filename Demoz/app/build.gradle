@@ -34,6 +34,6 @@ dependencies {
     compile 'com.alibaba:fastjson:1.2.18'
     compile 'com.squareup.okio:okio:1.9.0'
     compile project(':ptr-lib')
-    compile project(':servicelibrary')
+//    compile project(':servicelibrary')    // 内置web服务器关闭，由tomcat服务器提供数据 2016-12-05
     compile project(':slog')
 }

@@ -27,7 +27,8 @@ import cn.demoz.www.tools.LogUtils;
 public class HttpHelper {
 
 //    public static final String URL = "http://127.0.0.1:8090/";
-    public static final String URL = "http://localhost:8090/";
+    public static final String SERVER = "http://192.168.1.101:8080";
+    public static final String URL = SERVER + "/DemozWeb/";
 
     /**
      * get请求，获取返回字符串内容
