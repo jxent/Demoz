@@ -3,4 +3,8 @@
     <declare-styleable name="cn.demoz.j.view.RatioLayout">
         <attr name="ratio" format="float"></attr>
     </declare-styleable>
+
+    <declare-styleable name="HvScrollView">
+        <attr name="viewIndex" format="integer"></attr>
+    </declare-styleable>
 </resources>

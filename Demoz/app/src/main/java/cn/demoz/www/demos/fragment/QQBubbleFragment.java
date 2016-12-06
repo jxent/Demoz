@@ -2,55 +2,37 @@ package cn.demoz.www.demos.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import cn.demoz.www.base.BaseDemosFragment;
+import cn.demoz.www.demos.view.GooView;
 import cn.demoz.www.view.LargeImageView;
 
 public class QQBubbleFragment extends BaseDemosFragment {
 
     private LargeImageView mLargeImageView;
-    private String mDemoDesc = "";
-
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.huge_image_view_activity);
-//
-//        mLargeImageView = (LargeImageView) findViewById(R.id.id_large_image);
-//        try {
-//            InputStream inputStream = getAssets().open("world_map.jpg");
-//            mLargeImageView.setInputStream(inputStream);
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//
-//    }
-
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        TextView textView = new TextView(getActivity());
-        textView.setText("QQBubble...");
-//        return super.onCreateView(inflater, container, savedInstanceState);
-        return textView;
-    }
+    private String mDemoDesc = "效果仿QQ未读消息小气泡，拖拽出一定范围外，自动断开，可以用在未读通知等控件处...";
 
     @Override
     public View setDemoContentView(Context context, LayoutInflater inflater) {
-        return null;
+
+
+
+        GooView gooView = new GooView(context);
+//        gooView.setInitXY(200, 200);
+
+        return gooView;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public boolean childWantToCloseElastic(){
+        return true;
     }
 
     @Override

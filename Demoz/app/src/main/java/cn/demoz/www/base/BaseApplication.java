@@ -12,9 +12,6 @@ import android.os.Handler;
 import android.util.Log;
 
 import com.jason.slog.SLog;
-import com.wj.servicelibrary.server.WebService;
-
-import org.mortbay.ijetty.log.AndroidLog;
 
 /**
  * 代表当前应用程序
@@ -28,15 +25,15 @@ public class BaseApplication extends Application {
     private static Handler handler;
     private static Intent mServiceIntent;
 
-    static {
-        // 不使用jetty的XML解析验证
-        System.setProperty("org.eclipse.jetty.xml.XmlParser.Validating", "false");
-        // 使用android日志类
-        System.setProperty("org.eclipse.jetty.util.log.class", "org.mortbay.ijetty.AndroidLog");
-        org.eclipse.jetty.util.log.Log.setLog(new AndroidLog());
-    }
+//    static {
+//        // 不使用jetty的XML解析验证
+//        System.setProperty("org.eclipse.jetty.xml.XmlParser.Validating", "false");
+//        // 使用android日志类
+//        System.setProperty("org.eclipse.jetty.util.log.class", "org.mortbay.ijetty.AndroidLog");
+//        org.eclipse.jetty.util.log.Log.setLog(new AndroidLog());
+//    }
 
-    private boolean isAppBackground = false;
+//    private boolean isAppBackground = false;
 
     @Override
     //  在主线程运行的
@@ -54,9 +51,10 @@ public class BaseApplication extends Application {
                 .create();
 
         // 启动提供数据的后台服务
-        mServiceIntent = new Intent(this, WebService.class);
-        startService(mServiceIntent);
-        SLog.i(TAG, "Data Service 已启动...");
+// 2016-12-05注掉，开始由tomcat服务器提供数据
+//        mServiceIntent = new Intent(this, WebService.class);
+//        startService(mServiceIntent);
+//        SLog.i(TAG, "Data Service 已启动...");
 
         listenForForeground();
         listenForScreenTurningOff();
@@ -78,10 +76,10 @@ public class BaseApplication extends Application {
             // 回到应用的时候会调用此方法，判断app又回到了前台
             @Override
             public void onActivityResumed(Activity activity) {
-                if (isAppBackground) {
-                    isAppBackground = false;
-                    notifyForeground();
-                }
+//                if (isAppBackground) {
+//                    isAppBackground = false;
+//                    notifyForeground();
+//                }
             }
 
             @Override
@@ -126,8 +124,8 @@ public class BaseApplication extends Application {
         registerReceiver(new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                isAppBackground = true;
-                notifyBackground();
+//                isAppBackground = true;
+//                notifyBackground();
             }
         }, screenStateFilter);
     }
@@ -145,16 +143,16 @@ public class BaseApplication extends Application {
     public void onTrimMemory(int level) {
         super.onTrimMemory(level);
         // 应用回到后台，或被销毁都会走到这里
-        if (level == TRIM_MEMORY_UI_HIDDEN) {
-            isAppBackground = true;
-            notifyBackground();
-        }
+//        if (level == TRIM_MEMORY_UI_HIDDEN) {
+//            isAppBackground = true;
+//            notifyBackground();
+//        }
     }
 
-    private void notifyBackground() {
-        stopService(mServiceIntent);
-        Log.i(TAG, "回到后台，数据服务已关闭...");
-    }
+//    private void notifyBackground() {
+//        stopService(mServiceIntent);
+//        Log.i(TAG, "回到后台，数据服务已关闭...");
+//    }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
