@@ -26,6 +26,11 @@ public class WebService extends Service {
 	}
 
 	@Override
+	public int onStartCommand(Intent intent, int flags, int startId) {
+		return super.onStartCommand(intent, flags, startId);
+	}
+
+	@Override
 	public void onStart(Intent intent, int startId) {
 		super.onStart(intent, startId);
 		startForeground(9999, new Notification());
@@ -66,13 +71,13 @@ public class WebService extends Service {
 				server = new Server(8090);
 				// server.setHandler(new DefaultHandler());
 				ServletContextHandler contextHandler = new ServletContextHandler(ServletContextHandler.SESSIONS);
-				contextHandler.setContextPath("/");
+				contextHandler.setContextPath("/DemozWeb");// 指定上下文路径，项目目录 /DemozWeb/flows...?index...
 				server.setHandler(contextHandler);
 				ServletConfig.config(contextHandler);
 
 				server.start();
 				server.join();
-				Looper.prepare();
+				Looper.prepare();		// looper 线程
 				Looper.loop();
 				Toast.makeText(WebService.this, "服务器启动", Toast.LENGTH_SHORT).show();
 

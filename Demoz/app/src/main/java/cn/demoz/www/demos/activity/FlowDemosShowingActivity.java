@@ -3,7 +3,7 @@ package cn.demoz.www.demos.activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.FrameLayout;
 
 import cn.demoz.www.R;
@@ -11,7 +11,7 @@ import cn.demoz.www.bean.FlowDemosItemBean;
 import cn.demoz.www.fragment.FragmentFactory;
 import cn.demoz.www.view.LargeImageView;
 
-public class FlowDemosShowingActivity extends ActionBarActivity {
+public class FlowDemosShowingActivity extends AppCompatActivity {
 
     private LargeImageView mLargeImageView;
     private FrameLayout content;
@@ -26,12 +26,13 @@ public class FlowDemosShowingActivity extends ActionBarActivity {
         if(getIntent() != null){
             tokenBean = (FlowDemosItemBean) getIntent().getSerializableExtra("fragment_bean");
         }
+
         // 通过key得到Fragment
         if(tokenBean != null) {
             fragment = FragmentFactory.getFlowDemosShowingFragment(tokenBean);
         }
 
-        content = (FrameLayout)  findViewById(R.id.content);
+        content = findViewById(R.id.content);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.content, fragment).commit();
 

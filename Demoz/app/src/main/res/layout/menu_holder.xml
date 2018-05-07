@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:layout_height="match_parent">
+
+    <!--android:fillViewport="true"-->
+
     <!--ScollView 包裹的孩子 默认高度只能是包裹内容
      android:fillViewport="true"允许孩子是匹配父容器  -->
     <LinearLayout
@@ -10,55 +12,67 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:id="@+id/photo_layout"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:background="@drawable/menu_icon_bg"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp">
-
-            <ImageView
-                android:id="@+id/image_photo"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:background="@drawable/bg_photo"
-                android:padding="5dip" />
-
-            <ImageView
-                android:id="@+id/image_over"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:src="@drawable/photo_over" />
+            android:layout_height="170dp"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:background="@drawable/eminem"
+            android:gravity="bottom">
 
             <RelativeLayout
+                android:id="@+id/photo_layout"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:layout_marginLeft="20dp"
-                android:layout_toRightOf="@id/image_photo"
-                android:gravity="center_vertical">
+                android:background="#00000000"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
 
-                <TextView
-                    android:id="@+id/user_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:text="@string/tv_user_name"
-                    android:textColor="#2b2b2b"
-                    android:textSize="18dp" />
+                <ImageView
+                    android:id="@+id/image_photo"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:background="@drawable/bg_photo"
+                    android:padding="5dip" />
 
-                <TextView
-                    android:id="@+id/user_email"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/user_name"
-                    android:layout_marginTop="5dp"
-                    android:singleLine="true"
-                    android:text="@string/tv_user_email"
-                    android:textColor="#7a7a7a"
-                    android:textSize="14dp" />
+                <ImageView
+                    android:id="@+id/image_over"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:src="@drawable/photo_over" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@id/image_photo"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/user_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="@string/tv_user_name"
+                        android:textColor="#2b2b2b"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/user_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/user_name"
+                        android:layout_marginTop="5dp"
+                        android:singleLine="true"
+                        android:text="@string/tv_user_email"
+                        android:textColor="#7a7a7a"
+                        android:textSize="14dp" />
+                </RelativeLayout>
             </RelativeLayout>
-        </RelativeLayout>
+
+        </LinearLayout>
+
+
 
         <!-- 4f4f4f -->
 

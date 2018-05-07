@@ -7,7 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 
 import cn.demoz.www.base.BaseActivity;
-import cn.demoz.www.base.BaseApplication;
+import cn.demoz.www.base.BaseApp;
 
 public class UiUtils {
     /**
@@ -20,11 +20,11 @@ public class UiUtils {
     }
 
     public static Resources getResource() {
-        return BaseApplication.getApplication().getResources();
+        return BaseApp.getApplication().getResources();
     }
 
     public static Context getContext() {
-        return BaseApplication.getApplication();
+        return BaseApp.getApplication();
     }
 
     /**
@@ -50,11 +50,11 @@ public class UiUtils {
      */
     public static void runOnUiThread(Runnable runnable) {
         // 在主线程运行
-        if (android.os.Process.myTid() == BaseApplication.getMainTid()) {
+        if (android.os.Process.myTid() == BaseApp.getMainTid()) {
             runnable.run();
         } else {
             //获取handler
-            BaseApplication.getHandler().post(runnable);
+            BaseApp.getHandler().post(runnable);
         }
     }
 
@@ -77,7 +77,7 @@ public class UiUtils {
      * @param time 延迟的时间
      */
     public static void postDelayed(Runnable run, int time) {
-        BaseApplication.getHandler().postDelayed(run, time); // 调用Runable里面的run方法
+        BaseApp.getHandler().postDelayed(run, time); // 调用Runable里面的run方法
     }
 
     /**
@@ -86,7 +86,7 @@ public class UiUtils {
      * @param auToRunTask
      */
     public static void cancel(Runnable auToRunTask) {
-        BaseApplication.getHandler().removeCallbacks(auToRunTask);
+        BaseApp.getHandler().removeCallbacks(auToRunTask);
     }
 
     /**

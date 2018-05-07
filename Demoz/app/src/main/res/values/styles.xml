@@ -12,6 +12,11 @@
         -->
     </style>
 
+    <style name="AppTheme.Launcher">
+        <!--设置启动activity时的背景，在onCreate方法中替换回来，起到心理上的启动加速效果-->
+        <item name="android:windowBackground">@drawable/main_activity_launcher_bg</item>
+    </style>
+
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
@@ -22,6 +27,11 @@
         <item name="android:textSize">@dimen/list_item_title_size</item>
         <item name="android:ellipsize">end</item>
         <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="Toolbar.SubTitle" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle">
+        <item name="android:textSize">9.0sp</item>
+        <item name="android:textColor">@color/menu_item_white</item>
     </style>
 
 

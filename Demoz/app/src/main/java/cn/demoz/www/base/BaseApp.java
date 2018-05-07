@@ -12,18 +12,17 @@ import android.os.Handler;
 import android.util.Log;
 
 import com.jason.slog.SLog;
+import com.wj.servicelibrary.server.WebService;
 
 /**
  * 代表当前应用程序
  *
  * @author jason
  */
-public class BaseApplication extends Application {
-    private static final String TAG = "BaseApplication";
-    private static BaseApplication application;
+public class BaseApp extends Application {
+    private static BaseApp application;
     private static int mainTid;
     private static Handler handler;
-    private static Intent mServiceIntent;
 
 //    static {
 //        // 不使用jetty的XML解析验证
@@ -50,11 +49,15 @@ public class BaseApplication extends Application {
                 .setLogLevel(SLog.V)
                 .create();
 
-        // 启动提供数据的后台服务
-// 2016-12-05注掉，开始由tomcat服务器提供数据
-//        mServiceIntent = new Intent(this, WebService.class);
-//        startService(mServiceIntent);
-//        SLog.i(TAG, "Data Service 已启动...");
+
+
+
+
+
+
+
+
+
 
         listenForForeground();
         listenForScreenTurningOff();
@@ -106,8 +109,8 @@ public class BaseApplication extends Application {
 
     private void notifyForeground() {
         // This is where you can notify listeners, handle session tracking, etc
-        startService(mServiceIntent);
-        Log.i(TAG, "回到前台，数据服务已启动...");
+//        startService(mServiceIntent);
+//        Log.i(TAG, "回到前台，数据服务已启动...");
     }
 
     // 在模拟进程环境下程序终止的时候执行, <注>在真机环境下，仅仅通过杀死进程是不会调用此方法的

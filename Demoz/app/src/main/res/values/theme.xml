@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?><!--使用可以添加一个tab标签-->
 <resources>
+
     <!-- the theme applied to the application or activity -->
     <style name="CustomActionBarTheme" parent="@style/Theme.AppCompat.Light">
-        <!-- <item name="android:actionBarTabStyle">@style/MyActionBarTabs</item>  -->
+
+        <!--或者parent 为 @style/Theme.AppCompat.Light.NoActionBar 也可行-->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
 
         <!-- Support library compatibility -->
         <item name="actionBarTabStyle">@style/MyActionBarTabs</item>
+        <!--添加自定义主题的背景颜色-->
+        <item name="android:windowBackground">@color/custom_bg_color</item>
+
+        <!--aciton 动作过多显式的icon style-->
+        <item name="android:actionOverflowButtonStyle">@style/MyOverflowStyle</item>
+
     </style>
 
-    <!-- ActionBar tabs styles -->
-    <style name="MyActionBarTabs" parent="@style/Widget.AppCompat.ActionBar.TabView">
+    <style name="MyOverflowStyle" parent="@android:style/Widget.ActionButton.Overflow">
+        <item name="android:src">@drawable/actionbar_more</item>
+    </style>
+
+    <!-- 自定义 ActionBar tabs styles -->
+    <style name="MyActionBarTabs" parent="@style/Widget.AppCompat.Light.ActionBar.TabView">
         <!-- tab indicator -->
         <item name="android:background">@drawable/actionbar_tab_indicator</item>
 

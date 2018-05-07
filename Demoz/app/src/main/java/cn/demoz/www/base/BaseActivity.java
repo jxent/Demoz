@@ -1,17 +1,19 @@
 package cn.demoz.www.base;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import cn.demoz.www.R;
 
 /**
  * 抽取BaseActivity   管理所有activity 方便退出
  *
  * @author jason
  */
-public class BaseActivity extends ActionBarActivity {
+public class BaseActivity extends AppCompatActivity {
     // 管理运行的所有的activity
     public final static List<BaseActivity> mActivities = new LinkedList<BaseActivity>();
 
@@ -39,6 +41,8 @@ public class BaseActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        setTheme(R.style.CustomActionBarTheme);
+
         super.onCreate(savedInstanceState);
 //		receiver=new KillAllReceiver();
 //		IntentFilter filter=new IntentFilter("com.itheima.google.killall");
@@ -49,7 +53,7 @@ public class BaseActivity extends ActionBarActivity {
         }
         init();
         initView();
-        initActionBar();
+//        initActionBar();
     }
 
     @Override

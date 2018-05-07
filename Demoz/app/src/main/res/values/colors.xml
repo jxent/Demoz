@@ -6,4 +6,27 @@
     <color name="menu_bg_press">#cecece</color>
     <color name="menu_bg_normal">#f0f1f3</color>
     <color name="detail_screen_bg">#adadad</color>
+
+    <color name="custom_bg_color">#ffeeeeee</color>
+
+
+    <!-- Menu Item Color -->
+    <color name="menu_transparent">#00FFFFFF</color>
+    <color name="menu_item_blue">#3487f4</color>
+    <color name="menu_item_blue_dark">#2F79DB</color>
+    <color name="menu_item_grey">#ffdbdbdb</color>
+    <color name="menu_item_white">#FFFFFF</color>
+    <color name="menu_background">#FFFFFF</color>
+    <color name="menu_text_color">#444444</color>
+    <color name="menu_text_color_selected">#FFFFFF</color>
+    <color name="avatar_text">#FFFFFF</color>
+    <color name="avatar_background">#444444</color>
+    <color name="accent_material_light">#d20000</color>
+    <color name="primary_material_light">#f5f5f5</color>
+    <color name="theme_color_primary">#d20000</color>
+
+    <color name="toolabar_color">#d20000</color>
+
+    <color name="toolbarTextColor">#ffffffff</color>
+
 </resources>
